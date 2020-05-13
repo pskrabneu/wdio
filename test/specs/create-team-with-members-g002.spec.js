@@ -15,8 +15,8 @@ describe('Create team with members', function() {
 
   // Variables:**
   // Login + Password
-  const login = 'peter.borovik@vrpconsulting.com';
-  const password = 'VRPMSGlobal202005';
+  const login = 'xxx';
+  const password = 'xxx';
 
   // 'Parent Teams' tab name
   const appName = 'Parent Teams';

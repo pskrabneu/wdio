@@ -8,8 +8,8 @@ import ArrayOperationsComponent from '../pages/utils/array-operations.component'
 describe('Add Post Code to the Territory', function() {
   // **Variables:**
   // Login + Password
-  const login = 'peter.borovik@vrpconsulting.com';
-  const password = 'VRPMSGlobal202005';
+  const login = 'xxx';
+  const password = 'xxx';
 
   // For 'Territories' page
   const territoriesTabName = 'Territories';
