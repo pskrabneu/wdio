@@ -8,8 +8,6 @@ Automated tests with Mocha + WebdriverIO + Chai + Allure Report
 
 ```npm install```
 
-```npm install -g allure-commandline --save-dev```
-
 ```npm install webdriverio --save-dev```
 
 ```npm install mocha@7.1.1```
