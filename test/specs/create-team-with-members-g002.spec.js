@@ -16,10 +16,6 @@ describe('Create team with members', function() {
   /* VARIABLES CREATED DURING THE TEST */
 
   // Variables:**
-  // Login + Password
-  const login = 'peter.borovik@vrpconsulting.com';
-  const password = 'VRPMSGlobal202005';
-
   // 'Parent Teams' tab name
   const appName = 'Parent Teams';
   const parentTeamsTabName = 'Parent Teams';
@@ -36,20 +32,8 @@ describe('Create team with members', function() {
       DataProviderComponent.randomNumber;
   const teamDescriptionWf = 'Description ' + teamNameWf;
 
-
-  // 1. Login
-  // > Verify you logged correctly
-  // Verify title for Login page
-  it('should have the Login page title', function() {
-    LoginSfPage.open();
-
-    const loginSfPageTitle = browser.getTitle();
-    expect(loginSfPageTitle).toEqual('Login | Salesforce');
-
-    LoginSfPage.usernameInput.setValue(login);
-    LoginSfPage.passwordInput.setValue(password);
-    LoginSfPage.clickSubmitBtn();
-
+  it('should have the "Home" page opened', function() {
+    LoginSfPage.performLogin();
     const homeSfPageTitle = HomeSfPage.pageTitle;
     expect(homeSfPageTitle).toEqual('Lightning Experience');
   });
