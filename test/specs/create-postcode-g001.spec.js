@@ -1,3 +1,4 @@
+import Page from '../pages/page';
 import LoginSfPage from '../pages/login-sf.page';
 import HomeSfPage from '../pages/home-sf.page';
 import TerritoriesSfPage from '../pages/territories-sf.page';
@@ -53,22 +54,23 @@ describe('Add Post Code to the Territory', function() {
   });
 
   // 'Create new territory' form is displayed
-  it('should open "Create New Territory" form', function() {
+  it('should open "Create New Territory" web-form', function() {
     ArrayOperationsComponent.oneVisible(TerritoriesSfPage.newButton).click();
 
     expect(TerritoriesSfPage.titleNewTerritoryForm).toHaveTextContaining('New Territory');
   });
 
   // Fields are populated and Territory is saved
-  it('should \'populate fields\' and \'Territory saved\' ', function() {
+  it('should populate necessary fields and save "Territory"', function() {
     TerritoriesSfPage.territoryName = newTerritoryName;
     TerritoriesSfPage.inputTerritory;
     TerritoriesSfPage.clickSaveBtn;
-    browser.pause(2000);
+    browser.pause(Page.WAITING_SMALL);
+    // TODO Verify you've created 'Territory'
   });
 
   // 'Postcode edit form is displayed' and 'Fields are populated'
-  it('should \'Add Postcode\' and \'Populate fields\' ', function() {
+  it('should add "Postcode" and populate necessary fields', function() {
     TerritoriesSfPage.clickOnRT;
 
     browser.pause(2000);

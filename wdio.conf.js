@@ -244,7 +244,6 @@ exports.config = {
         allure.addEnvironment("BROWSER", browser.capabilities.browserName);
         allure.addEnvironment("BROWSER_VERSION", browser.capabilities.version);
         allure.addEnvironment("PLATFORM", browser.capabilities.platform);
-
     },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
