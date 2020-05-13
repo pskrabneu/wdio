@@ -1,3 +1,5 @@
+import { describe } from 'mocha';
+
 /* PAGES IMPORT */
 import LoginSfPage from '../pages/login-sf.page';
 import HomeSfPage from '../pages/home-sf.page';
@@ -15,8 +17,8 @@ describe('Create team with members', function() {
 
   // Variables:**
   // Login + Password
-  const login = 'xxx';
-  const password = 'xxx';
+  const login = 'peter.borovik@vrpconsulting.com';
+  const password = 'VRPMSGlobal202005';
 
   // 'Parent Teams' tab name
   const appName = 'Parent Teams';
@@ -46,7 +48,7 @@ describe('Create team with members', function() {
 
     LoginSfPage.usernameInput.setValue(login);
     LoginSfPage.passwordInput.setValue(password);
-    LoginSfPage.submit();
+    LoginSfPage.clickSubmitBtn();
 
     const homeSfPageTitle = HomeSfPage.pageTitle;
     expect(homeSfPageTitle).toEqual('Lightning Experience');

@@ -3,18 +3,39 @@ import Page from './page';
 import HomeSfPage from './home-sf.page';
 
 class LoginSfPage extends Page {
+  // Login + Password + Url
+  login = 'peter.borovik@vrpconsulting.com';
+  password = 'VRPMSGlobal202005';
+  url = 'https://test.salesforce.com/';
+
   get usernameInput() {return $('#username');}
   get passwordInput() {return $('#password');}
   get submitBtn() {return $('#Login');}
 
-  open(path) {
-    super.open('https://test.salesforce.com/');
+  open() {
+    super.open(this.url);
     return this;
   }
 
-  submit() {
+  inputLogin() {
+    this.usernameInput.setValue(this.login);
+  }
+
+  inputPassword() {
+    this.passwordInput.setValue(this.password);
+  }
+
+  clickSubmitBtn() {
     this.submitBtn.click();
+    browser.pause(Page.WAITING_SMALL);
     return HomeSfPage;
+  }
+
+  performLogin() {
+    this.open();
+    this.inputLogin();
+    this.inputPassword();
+    this.clickSubmitBtn();
   }
 }
 

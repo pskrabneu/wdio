@@ -1,7 +1,12 @@
+/* PAGES IMPORT */
+import LoginSfPage from '../login-sf.page';
+
 // Common elements for all pages
 const nineDotsBtn = '//div[@class="slds-icon-waffle"]';
 const searchAppsFld = '//input[@type="search"][@placeholder="Search apps and items..."]';
-const waitings = {
+
+// Waiting
+const waiting = {
   BIG: 8000,
   MEDIUM: 5000,
   SMALL: 2000,
@@ -14,17 +19,16 @@ class CommonActionsComponent {
     return pageObject;
   }
 
-  // open a page
+  // open a page with the help of 9dots
   openPage(pageObject, pageTitle) {
     console.log('<---Common Actions Component--->');
-    browser.pause(waitings.BIG);
+    browser.pause(waiting.BIG);
     const pageTitleLinks = '//p[@class="slds-truncate"]/b[text()="' + pageTitle + '"]/../..';
     this.clickNineDots(pageObject);
-    browser.pause(waitings.MEDIUM);
+    browser.pause(waiting.MEDIUM);
     browser.$(searchAppsFld).setValue(pageTitle);
-    browser.pause(waitings.BIG);
+    browser.pause(waiting.BIG);
     const linksArray = browser.$$(pageTitleLinks);
-    console.log('Size links = ' + linksArray.length);
 
     for (let sz = 0; sz < linksArray.length; sz++) {
       const linkText = linksArray[sz].getText();
@@ -32,7 +36,7 @@ class CommonActionsComponent {
         linksArray[sz].click();
       }
     }
-    browser.pause(waitings.MEDIUM);
+    browser.pause(waiting.MEDIUM);
     return pageObject;
   }
 }

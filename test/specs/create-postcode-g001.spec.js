@@ -1,16 +1,17 @@
+import { describe } from 'mocha';
+
+/* PAGES IMPORT */
 import Page from '../pages/page';
 import LoginSfPage from '../pages/login-sf.page';
 import HomeSfPage from '../pages/home-sf.page';
 import TerritoriesSfPage from '../pages/territories-sf.page';
+
+/* COMMON COMPONENTS IMPORT */
 import DataProvider from '../pages/utils/data-provider.component';
 import ArrayOperationsComponent from '../pages/utils/array-operations.component';
 
 describe('Add Post Code to the Territory', function() {
   // **Variables:**
-  // Login + Password
-  const login = 'xxx';
-  const password = 'xxx';
-
   // For 'Territories' page
   const territoriesTabName = 'Territories';
   const newTerritoryName = DataProvider.randomTerritory;
@@ -19,21 +20,9 @@ describe('Add Post Code to the Territory', function() {
                       DataProvider.randomNumber +
                       DataProvider.randomNumber;
 
-  // Verify title for Login page
-  it('should have the "Login" page title', function() {
-    LoginSfPage.open();
-
-    const loginSfPageTitle = browser.getTitle();
-    console.log('Login Page Title = ' + loginSfPageTitle);
-    expect(loginSfPageTitle).toEqual('Login | Salesforce');
-  });
-
   // Verify title for Home page
   it('should have the "Home" page title', function() {
-    LoginSfPage.usernameInput.setValue(login);
-    LoginSfPage.passwordInput.setValue(password);
-    LoginSfPage.submit();
-
+    LoginSfPage.performLogin();
     const homeSfPageTitle = HomeSfPage.pageTitle;
     expect(homeSfPageTitle).toEqual('Lightning Experience');
   });
