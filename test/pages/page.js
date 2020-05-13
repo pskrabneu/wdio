@@ -1,15 +1,15 @@
 export default class Page {
+  static WAITING_BIG = 8000;
+  static WAITING_MEDIUM = 5000;
+  static WAITING_SMALL = 2000;
+
   constructor() {
-    this.title = 'my Page';
+    this.appTitle = 'My Page';
+    this.webForm = 'Web form';
   }
 
   open(path) {
     browser.url(path);
   }
-
-  verifyTextInPage(text) {
-    const pageText = $('body').getText();
-    const position = pageText.search(text);
-    chai.expect(position).to.be.above(0);
-  }
 }
+
