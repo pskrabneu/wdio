@@ -1,12 +1,3 @@
-const utilities= require("./support/utils/Utilities");
-const chai = require('chai');
-const allure = require('@wdio/allure-reporter').default;
-
-// Max time for single test case execution
-let timeout = process.env.DEBUG ? 99999999 : 120000;
-let elementTimeout = 10000;
-
-
 exports.config = {
     //
     // ====================
@@ -26,11 +17,11 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/specs/**/*.spec.js'
+        './test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
-        'path/to/excluded/files'
+        // 'path/to/excluded/files'
     ],
     //
     // ============
@@ -59,12 +50,9 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 3,
+        maxInstances: 5,
         //
         browserName: 'chrome',
-        'goog:chromeOptions': {
-            args: ['--disable-infobars', '--window-size=1920,1440'],
-        }
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -101,14 +89,14 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://uitestingplayground.com',
+    baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: elementTimeout,
+    waitforTimeout: 10000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 90000,
+    connectionRetryTimeout: 120000,
     //
     // Default request retries count
     connectionRetryCount: 3,
@@ -117,23 +105,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver',
-        // ['selenium-standalone', {
-        //     logPath: 'logs',
-        //     installArgs: {
-        //         drivers: {
-        //             chrome: { version: '79.0.3945.88' },
-        //             firefox: { version: '0.26.0' }
-        //         }
-        //     },
-        //     args: {
-        //         drivers: {
-        //             chrome: { version: '79.0.3945.88' },
-        //             firefox: { version: '0.26.0' }
-        //         }
-        //     },
-        // }]
-    ],
+    services: ['chromedriver'],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -152,28 +124,14 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: [
-      'spec',
-      ['allure', {
-        outputDir: 'report/allure-results',
-        disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: false,
-      }],
-      ['junit', {
-        outputDir: 'report/junit',
-        outputFileFormat: function(options) { // optional
-          return `test-${options.cid}-results.xml`
-        }
-      }]
-    ],
+    reporters: ['spec','junit',['allure', {outputDir: 'allure-results'}]],
  
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: timeout,
-        require: ['@babel/register']
+        timeout: 60000
     },
     //
     // =====
@@ -216,11 +174,8 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    before: function (capabilities, specs) {
-        global.allure = allure;
-        global.chai = chai;
-        global.utilities = utilities;
-    },
+    // before: function (capabilities, specs) {
+    // },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
@@ -232,18 +187,13 @@ exports.config = {
      * Hook that gets executed before the suite starts
      * @param {Object} suite suite details
      */
-    beforeSuite: function (suite) {
-        allure.addFeature(suite.name);
-    },
+    // beforeSuite: function (suite) {
+    // },
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    beforeTest: function (test, context) {
-        allure.addEnvironment("BROWSER", browser.capabilities.browserName);
-        allure.addEnvironment("BROWSER_VERSION", browser.capabilities.version);
-        allure.addEnvironment("PLATFORM", browser.capabilities.platform);
-
-    },
+    // beforeTest: function (test, context) {
+    // },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
@@ -260,15 +210,12 @@ exports.config = {
      * Function to be executed after a test (in Mocha/Jasmine).
      */
     afterTest: function(test, context, { error, result, duration, passed, retries }) {
-        if (error !== undefined) {
-            try {
-                //TODO: Fix allure reporting on failure
-                utilities.takeScreenshot(test.title, true)
-            } catch {
-                console.log('>> Capture Screenshot Failed!');
-            }
+        if (!passed) {
+            browser.takeScreenshot();
         }
     },
+
+
     /**
      * Hook that gets executed after the suite has ended
      * @param {Object} suite suite details
