@@ -6,13 +6,11 @@ Automated tests with Mocha + WebdriverIO + Chai + Allure Report
 
 **Install**
 
-```npm init```
-
-```npm install webdriverio --save-dev```
-
-```npx wdio config```
+```npm install```
 
 ```npm install -g allure-commandline --save-dev```
+
+```npm install webdriverio --save-dev```
 
 ```npm install mocha@7.1.1```
 
@@ -22,6 +20,18 @@ Automated tests with Mocha + WebdriverIO + Chai + Allure Report
 
 ```npm install chai-webdriverio --save-dev```
 
+```npm init```
+
+```npx wdio config```
+
+
+*In case any errors:*
+
+```npm fix```
+
+```npm fund```
+
+
 **Run Tests**
 
 ```npm test```
@@ -29,5 +39,24 @@ Automated tests with Mocha + WebdriverIO + Chai + Allure Report
 **Allure Report**
 
 ```npm run report```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
