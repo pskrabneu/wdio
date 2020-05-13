@@ -1,6 +1,7 @@
 // 'Team' tab page (team-sf.page.js)
 import Page from './page';
 import ArrayOperationsComponent from './utils/array-operations.component';
+import DataProviderComponent from './utils/data-provider.component';
 
 class TeamSfPage extends Page {
   constructor() {
@@ -31,13 +32,17 @@ class TeamSfPage extends Page {
   }
 
   // Team Membership -> 'New' button
-  get teamMembershipNewBtn() {
+  get teamMembershipNewBtnRT() {
     return $('//h2/a/span[text()="Team Membership"]/../../../../../div/div/ul/li/a');
   }
 
   // Web-form title
   get wFTitle() {
     return $('//article/h2');
+  }
+
+  get inputUserWfField() {
+    return $('//input[@placeholder="Search People..."]');
   }
 
 
@@ -57,8 +62,8 @@ class TeamSfPage extends Page {
   }
 
   // Team Membership -> click 'New' button
-  get teamMembershipNewBtn() {
-    this.teamMembershipNewBtn().click();
+  get clickTeamMembershipNewBtn() {
+    this.teamMembershipNewBtnRT().click();
     browser.pause(Page.WAITING_BIG);
     return TeamSfPage;
   }
@@ -66,6 +71,12 @@ class TeamSfPage extends Page {
   // Take text on web-form title
   get takeActualWfName() {
     return this.wFTitle.getText();
+  }
+
+  // Input 'User' into 'User' field
+  get inputUserWfField() {
+    const userName = DataProviderComponent.randomUser;
+    this.inputUserWfField.setValue(userName);
   }
 }
 
