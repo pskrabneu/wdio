@@ -1,3 +1,11 @@
+const utilities= require("./support/utils/Utilities");
+const chai = require('chai');
+const allure = require('@wdio/allure-reporter').default;
+
+// Max time for single test case execution
+let timeout = process.env.DEBUG ? 99999999 : 120000;
+let elementTimeout = 10000;
+
 exports.config = {
     //
     // ====================
@@ -19,6 +27,28 @@ exports.config = {
     specs: [
         './test/specs/**/*.js'
     ],
+    // Specific suites or tests
+    suites: {
+        test001: [
+            './test/specs/create-postcode-g001.spec.js'
+        ],
+        test002: [
+            './test/specs/create-team-with-members-g002.spec.js'
+        ],
+        test003: [
+            './test/specs/xxx-g003.spec.js'
+        ],
+        login: [
+            //'./test/specs/login.success.spec.js',
+            //'./test/specs/login.failure.spec.js'
+        ],
+        testFun: [
+            './test/specs/test.spec.js'
+        ],
+        currentTest: [
+            './test/specs/create-team-with-members-g002.spec.js'
+        ]
+    },
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -46,11 +76,11 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 5,
+        maxInstances: 3,
         //
         browserName: 'chrome',
         // If outputDir is provided WebdriverIO can capture driver session logs
@@ -89,7 +119,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: '',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -106,7 +136,7 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['chromedriver'],
-    
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -124,14 +154,28 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec','junit',['allure', {outputDir: 'allure-results'}]],
- 
+    reporters: [
+        'spec',
+        ['allure', {
+            outputDir: 'report/allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
+        }],
+        ['junit', {
+            outputDir: 'report/junit',
+            outputFileFormat: function(options) { // optional
+                return `test-${options.cid}-results.xml`
+            }
+        }]
+    ],
+
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 60000,
+        require: ['@babel/register']
     },
     //
     // =====
@@ -174,8 +218,11 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    // before: function (capabilities, specs) {
-    // },
+    before: function (capabilities, specs) {
+        global.allure = allure;
+        global.chai = chai;
+        global.utilities = utilities;
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
@@ -187,13 +234,18 @@ exports.config = {
      * Hook that gets executed before the suite starts
      * @param {Object} suite suite details
      */
-    // beforeSuite: function (suite) {
-    // },
+    beforeSuite: function (suite) {
+        allure.addFeature(suite.name);
+    },
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    // beforeTest: function (test, context) {
-    // },
+    beforeTest: function (test, context) {
+        allure.addEnvironment("BROWSER", browser.capabilities.browserName);
+        allure.addEnvironment("BROWSER_VERSION", browser.capabilities.version);
+        allure.addEnvironment("PLATFORM", browser.capabilities.platform);
+
+    },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
