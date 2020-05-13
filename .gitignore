@@ -4,3 +4,4 @@
 /junit/*
 report.*
 .idea/*
+allure-results/
