@@ -45,6 +45,21 @@ class TeamSfPage extends Page {
     return $('//input[@placeholder="Search People..."]');
   }
 
+  // 'Save' button on 'New Team Membership' web-form
+  get saveBtnWf() {
+    return $('//button[@title="Save"]');
+  }
+
+  // Team Name after saving
+  get actualTeamNameRT() {
+    return $('//h1/div[text()="Team"]/../slot/' +
+      'slot[@slot="primaryField"]/lightning-formatted-text');
+  }
+
+  // 'User Name' after assigning on 'Related' tab
+  get actualUserNameRT() {
+    return $('//table/tbody/tr/th[not(@class)]/div/a');
+  }
 
   /* ACTIONS */
   get takeActualTeamName() {
@@ -74,9 +89,27 @@ class TeamSfPage extends Page {
   }
 
   // Input 'User' into 'User' field
-  get inputUserWfField() {
-    const userName = DataProviderComponent.randomUser;
+  selectUserWfField(userName) {
     this.inputUserWfField.setValue(userName);
+    browser.$('//div[@class="listContent"]/ul[@role="presentation"]/' +
+      'li/a/div/div[@title="' + userName + '"]').click();
+  }
+
+  // Click on 'Save' button within the 'New Team Membership' web-form
+  get clickSaveWfBtn() {
+    this.saveBtnWf.click();
+    browser.pause(Page.WAITING_MEDIUM);
+    return TeamSfPage;
+  }
+
+  // Take actual 'Team' after saving
+  get takeActualTeamNameRT() {
+    return this.actualTeamNameRT.getText();
+  }
+
+  // Take actual 'User Name' after saving on 'Related' tab
+  get takeActualUserNameRT() {
+    return this.actualUserNameRT.getText();
   }
 }
 

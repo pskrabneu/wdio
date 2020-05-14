@@ -23,7 +23,8 @@ describe('Add Post Code to the Territory', function() {
   // Verify title for Home page
   it('should have the "Home" page title', function() {
     LoginSfPage.performLogin();
-    const homeSfPageTitle = HomeSfPage.pageTitle;
+
+    const homeSfPageTitle = HomeSfPage.actualPageTitle;
     expect(homeSfPageTitle).toEqual('Lightning Experience');
   });
 

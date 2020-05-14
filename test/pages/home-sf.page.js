@@ -2,14 +2,14 @@
 import Page from './page';
 import TerritoriesSfPage from './territories-sf.page';
 import ParentTeamsSfPage from './parent-teams-sf.page';
-import TeamsSfPage from './teams-sf.page';
 
 const territoriesTabName = 'Territories';
 const parentTeamsTabName = 'Parent Teams';
 
 class HomeSfPage extends Page {
-  get pageTitle() {return $('title').getText();}
-  get inputSearchApps() {return $('//input[@type="search"][@placeholder="Search apps and items..."]');}
+  get actualPageTitle() {return $('title').getText();}
+  get inputSearchApps() {return $('//input[@type="search"]' +
+    '[@placeholder="Search apps and items..."]');}
 
   get territoriesTabLink() {return $('//b[text()="Territories"]');}
   get parentTeamsTabLink() {return $('//b[text()="Parent Teams"]');}

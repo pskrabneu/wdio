@@ -32,9 +32,12 @@ describe('Create team with members', function() {
       DataProviderComponent.randomNumber;
   const teamDescriptionWf = 'Description ' + teamNameWf;
 
+  // 'New Team Membership' web-form
+  const userName = DataProviderComponent.randomUser;
+
   it('should have the "Home" page opened', function() {
     LoginSfPage.performLogin();
-    const homeSfPageTitle = HomeSfPage.pageTitle;
+    const homeSfPageTitle = HomeSfPage.actualPageTitle;
     expect(homeSfPageTitle).toEqual('Lightning Experience');
   });
 
@@ -114,16 +117,28 @@ describe('Create team with members', function() {
   });
 
   it('should assign "User" to the created "Team"', function() {
-    
-    // navigate to the Related
-    // 'Team Membership' -> 'New'
-    // verify we are at the right web-form
-    // assign User to the created Team -> click 'New'
-    // add user to team
-    // press 'Save' button
-    // verify 'User' is assigned
-    // delete created 'Team'
-    // verify the 'Team' is deleted
+    TeamSfPage.clickRelatedTab;
+    TeamSfPage.clickTeamMembershipNewBtn;
+
+    expect(TeamSfPage.takeActualWfName).toEqual(TeamSfPage.webForm);
+    console.log('We are at "New Team Membership" web-form');
+
+    TeamSfPage.selectUserWfField(userName);
+    TeamSfPage.clickSaveWfBtn;
+
+    const tName = TeamSfPage.takeActualTeamNameRT;
+    expect(tName).toEqual(teamNameWf);
+
+    const uName = TeamSfPage.takeActualUserNameRT;
+    expect(uName).toEqual(userName);
+    console.log('The "User" assigned to the proper "Team"');
+  });
+
+  // delete created 'Team'
+  // verify the 'Team' is deleted
+  it('should correctly delete created "Team" in order' +
+    ' to use them in further tests', function() {
+
   });
 });
 

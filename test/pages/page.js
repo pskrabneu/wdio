@@ -5,7 +5,7 @@ export default class Page {
 
   constructor() {
     this.appTitle = 'My Page';
-    this.pageTitle = 'My Page';
+    // this.pageTitle = 'My Page';
     this.webForm = 'Web form';
   }
 
