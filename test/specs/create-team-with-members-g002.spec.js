@@ -43,10 +43,10 @@ describe('Create team with members', function() {
 
   // 2. Navigate to the 'Parent Teams' tab
   it('should opens "Parent Team" tab', function() {
-    HomeSfPage.appLauncherDots;
+    HomeSfPage.clickAppLauncherDots;
     HomeSfPage.inputParentTeamsTabName;
 
-    browser.pause(1000);
+    browser.pause(Page.WAITING_SMALL);
 
     HomeSfPage.openParentTeamsPage;
 
@@ -119,7 +119,6 @@ describe('Create team with members', function() {
   it('should assign "User" to the created "Team"', function() {
     TeamSfPage.clickRelatedTab;
     TeamSfPage.clickTeamMembershipNewBtn;
-
     expect(TeamSfPage.takeActualWfName).toEqual(TeamSfPage.webForm);
     console.log('We are at "New Team Membership" web-form');
 

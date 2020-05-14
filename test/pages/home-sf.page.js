@@ -14,10 +14,10 @@ class HomeSfPage extends Page {
   get territoriesTabLink() {return $('//b[text()="Territories"]');}
   get parentTeamsTabLink() {return $('//b[text()="Parent Teams"]');}
 
-  get appLauncherDots() {
+  get clickAppLauncherDots() {
     const nineDots = browser.$('//div[@class="slds-icon-waffle"]');
     nineDots.click();
-    browser.pause(1000);
+    browser.pause(Page.WAITING_BIG);
     return HomeSfPage;
   }
 

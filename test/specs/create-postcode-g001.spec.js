@@ -30,7 +30,7 @@ describe('Add Post Code to the Territory', function() {
 
   // Verify the 'Territories' tab is opened
   it('should open "Territories" tab correctly', function() {
-    HomeSfPage.appLauncherDots;
+    HomeSfPage.clickAppLauncherDots;
     HomeSfPage.inputTerritoriesTabName;
     browser.pause(2000);
 

@@ -28,12 +28,12 @@ class TeamSfPage extends Page {
   /* RELATED TAB */
   // Related tab
   get relatedTab() {
-    return $('//a[@data-label="Related"][@role="tab"]');
+    return $$('//a[@data-label="Related"][@role="tab"]');
   }
 
   // Team Membership -> 'New' button
   get teamMembershipNewBtnRT() {
-    return $('//h2/a/span[text()="Team Membership"]/../../../../../div/div/ul/li/a');
+    return $$('//h2/a/span[text()="Team Membership"]/../../../../../div/div/ul/li/a');
   }
 
   // Web-form title
@@ -42,7 +42,7 @@ class TeamSfPage extends Page {
   }
 
   get inputUserWfField() {
-    return $('//input[@placeholder="Search People..."]');
+    return $$('//input[@placeholder="Search People..."]');
   }
 
   // 'Save' button on 'New Team Membership' web-form
@@ -71,14 +71,14 @@ class TeamSfPage extends Page {
   }
 
   get clickRelatedTab() {
-    this.relatedTab.click();
+    (ArrayOperationsComponent.oneVisible(this.relatedTab)).click();
     browser.pause(Page.WAITING_MEDIUM);
     return TeamSfPage;
   }
 
   // Team Membership -> click 'New' button
   get clickTeamMembershipNewBtn() {
-    this.teamMembershipNewBtnRT().click();
+    (ArrayOperationsComponent.oneVisible(this.teamMembershipNewBtnRT)).click();
     browser.pause(Page.WAITING_BIG);
     return TeamSfPage;
   }
@@ -90,7 +90,7 @@ class TeamSfPage extends Page {
 
   // Input 'User' into 'User' field
   selectUserWfField(userName) {
-    this.inputUserWfField.setValue(userName);
+    ArrayOperationsComponent.oneVisible(this.inputUserWfField).setValue(userName);
     browser.$('//div[@class="listContent"]/ul[@role="presentation"]/' +
       'li/a/div/div[@title="' + userName + '"]').click();
   }
