@@ -1,7 +1,8 @@
 // 'Team' tab page (team-sf.page.js)
 import Page from './page';
+import TeamsSfPage from './teams-sf.page';
+
 import ArrayOperationsComponent from './utils/array-operations.component';
-import DataProviderComponent from './utils/data-provider.component';
 
 class TeamSfPage extends Page {
   constructor() {
@@ -61,6 +62,21 @@ class TeamSfPage extends Page {
     return $('//table/tbody/tr/th[not(@class)]/div/a');
   }
 
+  // 'Down Arrow' button for delete 'Team'
+  get downArrowBtnRT() {
+    return $$('//*[text()[normalize-space(.) = "Show more actions"]]/..');
+  }
+
+  // 'Delete' action in 'Actions' section of 'Team' page
+  get deleteBtn() {
+    return $$('//div[@role="menu"]/.//a[@name="Delete"]');
+  }
+
+  // 'Delete' button on 'Delete Team' pop-up
+  get deleteBtnDT() {
+    return $('//div/div/button[@aria-live="off"][@type="button"][@title="Delete"]');
+  }
+
   /* ACTIONS */
   get takeActualTeamName() {
     return this.actualTeamName.getText();
@@ -91,6 +107,7 @@ class TeamSfPage extends Page {
   // Input 'User' into 'User' field
   selectUserWfField(userName) {
     ArrayOperationsComponent.oneVisible(this.inputUserWfField).setValue(userName);
+    browser.pause(Page.WAITING_MEDIUM);
     browser.$('//div[@class="listContent"]/ul[@role="presentation"]/' +
       'li/a/div/div[@title="' + userName + '"]').click();
   }
@@ -110,6 +127,31 @@ class TeamSfPage extends Page {
   // Take actual 'User Name' after saving on 'Related' tab
   get takeActualUserNameRT() {
     return this.actualUserNameRT.getText();
+  }
+
+  // Click on 'Down Arrow'
+  get clickDownArrowBtnRT() {
+    (ArrayOperationsComponent.oneVisible(this.downArrowBtnRT)).click();
+    // return TeamSfPage;
+  }
+
+  // Click on 'Delete' button and delete 'Teat' created in previous steps
+  get clickDeleteBtn() {
+    this.clickDownArrowBtnRT;
+
+    console.log('Delete button is here = ' + this.deleteBtn.length);
+    console.log('Delete button is clickable = ' +
+      (ArrayOperationsComponent.oneVisible(this.deleteBtn)).isClickable());
+
+    (ArrayOperationsComponent.oneVisible(this.deleteBtn)).click();
+    browser.pause(Page.WAITING_MEDIUM);
+    return TeamSfPage;
+  }
+
+  // Confirm deleting on "Delete Team" pop-up window
+  get clickDeleteBtnDT() {
+    this.deleteBtnDT.click();
+    return TeamsSfPage;
   }
 }
 

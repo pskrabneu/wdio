@@ -48,6 +48,11 @@ class TeamsSfPage extends Page {
     return $('//div[@class="actionsContainer"]/div/button[@title="Save"]');
   }
 
+  // List of names in 'Team Name' column
+  get listTeamName() {
+    return $$('//tbody/tr/th/span/a');
+  }
+
   /* ACTIONS */
   get takeActualAppNameTitle() {
     return (ArrayOperationsComponent.oneVisible(this.actualAppNameTitle)).getText();
@@ -83,6 +88,14 @@ class TeamsSfPage extends Page {
     this.saveWfBtn.click();
     browser.pause(Page.WAITING_BIG);
     return TeamSfPage;
+  }
+
+  // Verify deleting 'Team' from 'Teams' page after clicking 'Delete' on 'Team' page
+  get verifyDeletedTeamIsNotExisted() {
+    const step = this.listTeamName.length;
+    for (let i = 0; i < step; i++) {
+      let tName = this.listTeamName[step].getText();
+    }
   }
 }
 

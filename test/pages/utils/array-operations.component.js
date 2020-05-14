@@ -21,6 +21,12 @@ class ArrayOperationsComponent {
       return console.log('Array with selector = ' + array.selector + '\nis empty');
     }
   }
+
+  // takes an array of web-elements and an element
+  // and return 'true' if array contains this element
+  arrayContainsElement(array, webElement) {
+    return array.includes(webElement);
+  }
 }
 
 export default new ArrayOperationsComponent();

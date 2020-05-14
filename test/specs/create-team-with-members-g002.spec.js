@@ -11,6 +11,7 @@ import Page from '../pages/page';
 /* COMMON COMPONENTS IMPORT */
 import DataProviderComponent from '../pages/utils/data-provider.component';
 import CommonActionsComponent from '../pages/utils/common-actions.component';
+import ArrayOperationsComponent from '../pages/utils/array-operations.component';
 
 describe('Create team with members', function() {
   /* VARIABLES CREATED DURING THE TEST */
@@ -123,6 +124,7 @@ describe('Create team with members', function() {
     console.log('We are at "New Team Membership" web-form');
 
     TeamSfPage.selectUserWfField(userName);
+
     TeamSfPage.clickSaveWfBtn;
 
     const tName = TeamSfPage.takeActualTeamNameRT;
@@ -136,8 +138,13 @@ describe('Create team with members', function() {
   // delete created 'Team'
   // verify the 'Team' is deleted
   it('should correctly delete created "Team" in order' +
-    ' to use them in further tests', function() {
+    ' to use the assigned User in further tests', function() {
+    browser.pause(Page.WAITING_SMALL);
+    TeamSfPage.clickDeleteBtn;
+    TeamSfPage.clickDeleteBtnDT;
 
+
+    console.log('DownArrowBtnRT clicked = true');
   });
 });
 
