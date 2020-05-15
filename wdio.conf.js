@@ -36,7 +36,13 @@ exports.config = {
             './test/specs/create-team-with-members-g002.spec.js'
         ],
         test003: [
-            './test/specs/xxx-g003.spec.js'
+            './test/specs/create-lead-g003.spec.js'
+        ],
+        test004: [
+            './test/specs/convert-lead-g004.spec.js'
+        ],
+        test005: [
+            './test/specs/create-account-g005.spec.js'
         ],
         login: [
             //'./test/specs/login.success.spec.js',
