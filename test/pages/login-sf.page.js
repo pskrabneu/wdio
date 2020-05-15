@@ -4,8 +4,8 @@ import HomeSfPage from './home-sf.page';
 
 class LoginSfPage extends Page {
   // Login + Password + Url
-  login = 'xxx';
-  password = 'xxx';
+  login = 'peter.borovik@vrpconsulting.com';
+  password = 'VRPMSGlobal202005';
   url = 'https://test.salesforce.com/';
 
   get usernameInput() {return $('#username');}
