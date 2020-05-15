@@ -94,7 +94,9 @@ class TeamsSfPage extends Page {
   get verifyDeletedTeamIsNotExisted() {
     const step = this.listTeamName.length;
     for (let i = 0; i < step; i++) {
-      let tName = this.listTeamName[step].getText();
+      // let tName = this.listTeamName[step].getText();
+      console.log('Pure element = ' + this.listTeamName[step]);
+      console.log('Get text from element = ' + this.listTeamName[step].getText());
     }
   }
 }

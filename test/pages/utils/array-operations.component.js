@@ -24,8 +24,19 @@ class ArrayOperationsComponent {
 
   // takes an array of web-elements and an element
   // and return 'true' if array contains this element
-  arrayContainsElement(array, webElement) {
-    return array.includes(webElement);
+  arrayContainsElement(array, textValue) {
+    const size = array.length;
+
+    // rule
+    const isContains = (currentValue) => currentValue.getText().isEqual(textValue);
+
+    if (size > 0) {
+      return array.every(isContains);
+    } else {
+      return false;
+    }
+
+    // return array.includes(webElement);
   }
 }
 

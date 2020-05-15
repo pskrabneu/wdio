@@ -143,8 +143,15 @@ describe('Create team with members', function() {
     TeamSfPage.clickDeleteBtn;
     TeamSfPage.clickDeleteBtnDT;
 
+    console.log('Array size = ' + TeamsSfPage.listTeamName.length);
+    console.log('Array [0] = ' + TeamsSfPage.listTeamName[0].getText());
+    console.log('Array [0] pure = ' + TeamsSfPage.listTeamName[0].toString());
+    console.log('Array [1] = ' + TeamsSfPage.listTeamName[1].getText());
+    console.log('Array [1] pure = ' + TeamsSfPage.listTeamName[1].toString());
 
-    console.log('DownArrowBtnRT clicked = true');
+    // TeamsSfPage.verifyDeletedTeamIsNotExisted;
+
+    console.log('<---> TEST <--->');
   });
 });
 
