@@ -23,7 +23,7 @@ class ArrayOperationsComponent {
   }
 
   // takes an array of web-elements and an element
-  // and return 'true' if array contains this element
+  // and return 'false' if array contains this element
   containsElement(array, textValue) {
     const size = array.length;
 

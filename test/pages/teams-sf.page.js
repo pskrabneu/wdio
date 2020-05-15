@@ -89,16 +89,6 @@ class TeamsSfPage extends Page {
     browser.pause(Page.WAITING_BIG);
     return TeamSfPage;
   }
-
-  // Verify deleting 'Team' from 'Teams' page after clicking 'Delete' on 'Team' page
-  get verifyDeletedTeamIsNotExisted() {
-    const step = this.listTeamName.length;
-    for (let i = 0; i < step; i++) {
-      // let tName = this.listTeamName[step].getText();
-      console.log('Pure element = ' + this.listTeamName[step]);
-      console.log('Get text from element = ' + this.listTeamName[step].getText());
-    }
-  }
 }
 
 export default new TeamsSfPage();
