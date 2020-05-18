@@ -27,13 +27,12 @@ class HomeSfPage extends Page {
   }
 
   /* OPEN PAGES */
+  // TODO
+  // Replace it with 1 function in future
+
   get openTerritoriesPage() {
     this.territoriesTabLink.click();
     return TerritoriesSfPage;
-  }
-
-  get openTeamsPage() {
-
   }
 
   get inputParentTeamsTabName() {

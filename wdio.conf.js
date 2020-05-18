@@ -44,6 +44,27 @@ exports.config = {
         test005: [
             './test/specs/create-account-g005.spec.js'
         ],
+        test006: [
+            './test/specs/xxx-g006.spec.js'
+        ],
+        test007: [
+            './test/specs/xxx-g007.spec.js'
+        ],
+        test008: [
+            './test/specs/xxx-g008.spec.js'
+        ],
+        test009: [
+            './test/specs/xxx-g009.spec.js'
+        ],
+        test010: [
+            './test/specs/xxx-g010.spec.js'
+        ],
+        test011: [
+            './test/specs/xxx-g011.spec.js'
+        ],
+        test012: [
+            './test/specs/xxx-g012.spec.js'
+        ],
         login: [
             //'./test/specs/login.success.spec.js',
             //'./test/specs/login.failure.spec.js'

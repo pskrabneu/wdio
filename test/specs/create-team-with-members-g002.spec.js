@@ -145,7 +145,7 @@ describe('Create team with members', function() {
 
     const y = ArrayOperationsComponent.containsElement(TeamsSfPage.listTeamName, teamNameWf);
     expect(y).toEqual(true);
-    console.log('Created "Team" is deleted and "User" is able' +
+    console.log('Created "Team" is deleted properly and "User" is able' +
       ' to participate in further tests');
   });
 });

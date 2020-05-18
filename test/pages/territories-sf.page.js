@@ -14,7 +14,8 @@ class TerritoriesSfPage extends Page {
   postCode;
   postCodeDescription;
 
-  get actualAppName() {return $$('//div[@class="slds-grid"]//nav[@aria-label="Breadcrumbs"]/ol/li/span');}
+  get actualAppName() {return $$('//div[@class="slds-grid"]//nav[@aria-label="Breadcrumbs"]' +
+    '/ol/li/span');}
   get newButton() {return $$('//*[text()="New"]/../../a[@title="New"]');}
   get titleNewTerritoryForm() {return $('//article/*[text()="New Territory"]');}
   get relatedTab() {return $('//ul[@class="slds-tabs_default__nav"]/li[@title="Related"]');}
