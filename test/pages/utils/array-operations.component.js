@@ -18,7 +18,7 @@ class ArrayOperationsComponent {
         }
       }
     } else {
-      return console.log('Array with selector = ' + array.selector + '\nis empty');
+      return false;
     }
   }
 

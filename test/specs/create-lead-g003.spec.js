@@ -14,6 +14,12 @@ import DataProviderComponent from '../pages/utils/data-provider.component';
 import CommonActionsComponent from '../pages/utils/common-actions.component';
 import ArrayOperationsComponent from '../pages/utils/array-operations.component';
 
+/* CONSTANTS USED WITHIN THE TEST */
+const traidingName = DataProviderComponent.randomCompanyName +
+                      ' TN' +
+                      DataProviderComponent.randomNumber +
+                      DataProviderComponent.randomLetter;
+
 describe('Create Lead', function() {
   it('should open "Leads" tab', function() {
     LoginSfPage.performLogin();
@@ -34,6 +40,8 @@ describe('Create Lead', function() {
 
   it('should populate all required fields and press "Save" button,' +
     ' no errors displayed', function() {
+
+
 
   });
 
