@@ -71,8 +71,7 @@ class LeadsSfPage extends Page {
     return $$('//td[contains(@class, "Button")]/span/input[@type="button" and @value="Save "]');
   }
 
-
-  // Alert area
+  // Alert area on web-form
   get alertArea() {
     return $$('//span/span/div[contains(@class,"error")][@role="alert"]');
   }
@@ -93,7 +92,7 @@ class LeadsSfPage extends Page {
     (ArrayOperationsComponent.oneVisible(this.actualTitleWf)).getText();
   }
 
-  // is any area displayed?
+  // is any "alert/error" area displayed?
   get isAlertAreaDisplayed() {
     // TODO the function returns web-element not boolean value
     return (ArrayOperationsComponent.oneVisible(this.alertArea)).isDisplayed();
@@ -113,6 +112,7 @@ class LeadsSfPage extends Page {
   get selectLeadSourceDdlWf() {
     const x = Math.floor(Math.random() * this.leadSourceDdlWf.length);
     this.leadSourceDdlWf[x].click();
+    browser.pause(Page.WAITING_SMALL);
   }
 
   // input "Post Code" field

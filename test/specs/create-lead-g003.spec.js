@@ -15,10 +15,15 @@ import CommonActionsComponent from '../pages/utils/common-actions.component';
 import ArrayOperationsComponent from '../pages/utils/array-operations.component';
 
 /* CONSTANTS USED WITHIN THE TEST */
-const traidingName = DataProviderComponent.randomCompanyName +
+const tradingName = DataProviderComponent.randomCompanyName +
                       ' TN' +
                       DataProviderComponent.randomNumber +
                       DataProviderComponent.randomLetter;
+
+const lastName = DataProviderComponent.randomLastName +
+                  'LN' + DataProviderComponent.randomNumber;
+
+const postCode = DataProviderComponent.randomPostCode;
 
 describe('Create Lead', function() {
   it('should open "Leads" tab', function() {
@@ -40,6 +45,13 @@ describe('Create Lead', function() {
 
   it('should populate all required fields and press "Save" button,' +
     ' no errors displayed', function() {
+    LeadsSfPage.inputTradingNameWf(tradingName);
+    LeadsSfPage.inputLastNameWf(lastName);
+    LeadsSfPage.selectLeadSourceDdlWf;
+    LeadsSfPage.inputPostCodeWf(postCode);
+
+
+
 
 
 
