@@ -39,6 +39,27 @@ class ArrayOperationsComponent {
       return x;
     }
   }
+
+  // takes an array of web-elements
+  // and check if any element "isDisplayed"
+  // return "true" if at least one element is displayed
+  // return "false" if no element is displayed
+  // or there are no such elements
+  noDisplayed(array) {
+    const size = array.length;
+
+    // rule
+    const isDisplayed = (currentValue) => currentValue.isDisplayed();
+    let x;
+
+    if (size > 0) {
+      x = array.some(isDisplayed);
+      return x;
+    } else {
+      x = false;
+      return x;
+    }
+  }
 }
 
 export default new ArrayOperationsComponent();

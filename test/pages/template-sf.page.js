@@ -12,6 +12,7 @@ import ArrayOperationsComponent from '../pages/utils/array-operations.component'
 class TemplateSfPage extends Page {
   /* VARIABLES */
   /* CONSTANTS */
+  /* ELEMENTS */
   /* ACTIONS */
 
 }

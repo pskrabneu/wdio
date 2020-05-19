@@ -93,9 +93,10 @@ class LeadsSfPage extends Page {
   }
 
   // is any "alert/error" area displayed?
+  // return true -- if area is displayed
+  // return false -- if no area is displayed
   get isAlertAreaDisplayed() {
-    // TODO the function returns web-element not boolean value
-    return (ArrayOperationsComponent.oneVisible(this.alertArea)).isDisplayed();
+    return ArrayOperationsComponent.noDisplayed(this.alertArea);
   }
 
   // input "Trading Name" web-form
@@ -115,9 +116,15 @@ class LeadsSfPage extends Page {
     browser.pause(Page.WAITING_SMALL);
   }
 
-  // input "Post Code" field
+  // input "Post Code" field web-form
   inputPostCodeWf(postCode) {
     this.postCodeFieldWf.setValue(postCode);
+  }
+
+  // input "Email" field web-form
+  inputEmailWf(email) {
+    const em = $$('//input[@name="Email"]');
+    (ArrayOperationsComponent.oneVisible(em)).setValue(email);
   }
 
   // input "Probability %" field web-form (value from 1 to 100)
@@ -129,7 +136,7 @@ class LeadsSfPage extends Page {
   // click on "Save" button web-form
   get clickSaveBtnWf() {
     (ArrayOperationsComponent.oneVisible(this.saveBtnWf)).click();
-    browser.pause(LeadsSfPage.WAITING_MEDIUM);
+    browser.pause(LeadsSfPage.WAITING_BIG);
     return LeadSfPage;
   }
 }
