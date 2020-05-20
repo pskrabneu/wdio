@@ -13,7 +13,7 @@ import DataProviderComponent from '../pages/utils/data-provider.component';
 import CommonActionsComponent from '../pages/utils/common-actions.component';
 import ArrayOperationsComponent from '../pages/utils/array-operations.component';
 
-describe('Create team with members', function() {
+describe('Create team with members:', function() {
   /* VARIABLES CREATED DURING THE TEST */
 
   // Variables:**
@@ -144,7 +144,7 @@ describe('Create team with members', function() {
     TeamSfPage.clickDeleteBtnDT;
 
     const y = ArrayOperationsComponent.containsElement(TeamsSfPage.listTeamName, teamNameWf);
-    expect(y).toEqual(true);
+    expect(y).toEqual(false);
     console.log('Created "Team" is deleted properly and "User" is able' +
       ' to participate in further tests');
   });

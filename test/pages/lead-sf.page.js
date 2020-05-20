@@ -15,45 +15,36 @@ class LeadSfPage extends Page {
 
   constructor() {
     super();
-    this.appTitle = 'Lead';
+    this.pageTitle = 'Lead';
   }
 
   /* ELEMENTS */
-  // take "App Title"
-  get takeActualAppTitle() {
-    return $('//h1[@class="pageType"]').getText();
-  }
 
-  // take "Page Title"
-  get takeActualPageTitle() {
-    return $('//h2[@class="pageDescription"]').getText();
-  }
 
+  /* ACTIONS */
   // take "Trading Name" text
   get takeActualTradingName() {
-    return $$('//td[text()="Trading Name"]/../td/div')[0].getText();
+    const el = $('//h1/span/slot/slot/lightning-formatted-text');
+    return el.getText();
   }
 
-  // take "Last Name" text
+  // take "Last (or Contact) Name" text
   get takeActualLastName() {
-    return $$('//td[text()="Contact Name"]/../td/div')[0].getText();
+    return $('//p[@title="Contact Name"]/../p/' +
+      'slot/lightning-formatted-name').getText();
   }
 
   // take "Post Code" text
-  get takeActualPostCode() {
-    return $$('//td[text()="Business Address"]/../td/div')[0].getText();
+  get takeActualBusinessAddress() {
+    return $('//div/span[text()="Business Address"]/../following-sibling::div/' +
+      './/a').getAttribute('title');
   }
 
   // take "Email" text
   get takeActualEmail() {
-    return $('//td[text()="Email"]/../td/div/a').getText();
+    return $('//div/span[text()="Email"]/../' +
+      'following-sibling::div/.//a').getText();
   }
-
-
-
-  /* ACTIONS */
-
-
 }
 
 export default new LeadSfPage();

@@ -8,6 +8,8 @@ import LeadSfPage from '../pages/lead-sf.page';
 /* COMMON COMPONENTS IMPORT */
 import DataProviderComponent from '../pages/utils/data-provider.component';
 import CommonActionsComponent from '../pages/utils/common-actions.component';
+import ArrayOperationsComponent from '../pages/utils/array-operations.component';
+import Page from '../pages/page';
 
 /* CONSTANTS USED WITHIN THE TEST */
 const tradingName = DataProviderComponent.randomCompanyName +
@@ -16,13 +18,13 @@ const tradingName = DataProviderComponent.randomCompanyName +
                       DataProviderComponent.randomLetter;
 
 const lastName = DataProviderComponent.randomLastName +
-                  'LN' + DataProviderComponent.randomNumber;
+                  ' LN' + DataProviderComponent.randomNumber;
 
 const postCode = DataProviderComponent.randomPostCode;
 
 const eMail = DataProviderComponent.randomEmail;
 
-describe('Create Lead', function() {
+describe('Create Lead: ', function() {
   it('should open "Leads" tab', function() {
     LoginSfPage.performLogin();
 
@@ -30,13 +32,14 @@ describe('Create Lead', function() {
     CommonActionsComponent.openPage(LeadsSfPage, LeadsSfPage.appTitle);
 
     expect(LeadsSfPage.takeActualAppNameTitle).toEqual(LeadsSfPage.appTitle);
-    console.log('<--"Leads" page opened correctly-->');
+    console.log('<--"Leads" page opens correctly-->');
   });
 
   it('should press "New" button and open web-form', function() {
     LeadsSfPage.clickNewBtn;
 
-    expect(LeadsSfPage.takeActualTitleWf).toEqual(LeadsSfPage.webForm);
+    const actualTitleWf = LeadsSfPage.takeActualTitleWf;
+    expect(actualTitleWf).toEqual(LeadsSfPage.webForm);
     console.log('<--"Create Lead" web-form opened correctly-->');
   });
 
@@ -49,30 +52,46 @@ describe('Create Lead', function() {
     LeadsSfPage.inputEmailWf(eMail);
     LeadsSfPage.inputProbabilityFieldWf;
     LeadsSfPage.clickSaveBtnWf;
+    browser.refresh();
 
     // verify there are no error or warning area appears
     expect(LeadsSfPage.isAlertAreaDisplayed).toEqual(false);
     console.log('<--No Alert / Error area is displayed-->');
+
+    // open "Leads" page
+    CommonActionsComponent.openPage(LeadsSfPage, LeadsSfPage.appTitle);
   });
 
   it('should open created "Lead" with fields defined earlier,' +
     ' no errors displayed', function() {
-    expect(LeadSfPage.takeActualAppTitle).toEqual(LeadSfPage.appTitle);
-    console.log('<--We are on the right Page-->');
+    const contactNameArray = LeadsSfPage.actualContactNameArray;
+    const x = contactNameArray.length;
+    console.log('<--FT: "Contact Name"  <-->' + x);
+    for (let i = 0; i < x; i++) {
+      console.log('== "' + contactNameArray[i].getText() + '"');
+    }
 
-    expect(LeadSfPage.takeActualPageTitle).toEqual(lastName);
-    console.log('<--The Page has right Title (Last Name)-->');
 
-    expect(LeadSfPage.takeActualTradingName).toEqual(tradingName);
+
+    const hasContactName = ArrayOperationsComponent.containsElement(contactNameArray, lastName);
+    console.log('<--FT: is has "Contact Name" <-->' + hasContactName);
+
+    expect(actualTradingName).toEqual(tradingName);
     console.log('<--The Page has right "Trading Name"-->');
 
-    expect(LeadSfPage.takeActualLastName).toEqual(lastName);
-    console.log('<--The Page has right "Last Name"-->');
+    // Verify "Contact Name" (or "Last Name")
+    const actualLastName = LeadSfPage.takeActualLastName;
+    expect(actualLastName).toEqual(lastName);
+    console.log('<--The Page has right "Contact Name"-->');
 
-    expect(LeadSfPage.takeActualPostCode).toEqual(postCode);
+    // Verify "Post Code" within "Business Address"
+    const actualBusinessAddress = LeadSfPage.takeActualBusinessAddress;
+    expect(actualBusinessAddress).toContain(postCode);
     console.log('<--The Page has right "Post Code"-->');
 
-    expect(LeadSfPage.takeActualEmail).toEqual(eMail);
+    // Verify "Email"
+    const actualEmail = LeadSfPage.takeActualEmail;
+    expect(actualEmail).toEqual(eMail);
     console.log('<--The Page has right "Email"-->');
   });
 });

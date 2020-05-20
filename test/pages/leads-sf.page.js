@@ -16,7 +16,7 @@ class LeadsSfPage extends Page {
     super();
     this.appTitle = 'Leads';
     this.pageTitle = 'Leads';
-    this.webForm = 'Create Lead: ';
+    this.webForm = 'Create Lead:';
   }
 
   /* ELEMENTS */
@@ -30,11 +30,6 @@ class LeadsSfPage extends Page {
   }
 
   /* web-form "Create Lead" */
-  // Title of the web-form
-  get actualTitleWf() {
-    return $$('//div[@class="content"]/h2');
-  }
-
   // "Trading Name" field web-form
   get tradingNameFieldWf() {
     return $('//table/.//input[@name="Company"]');
@@ -76,10 +71,36 @@ class LeadsSfPage extends Page {
     return $$('//span/span/div[contains(@class,"error")][@role="alert"]');
   }
 
+  // Collecting info after saving
+  // "Contact Name"
+  get actualContactNameArray() {
+    const table = ArrayOperationsComponent.oneVisible(browser.$$('//table'));
+    return table.$$('//th[@scope="row"]/span/a');
+  }
+
+  // "Trading Name"
+  get actualTradingNameArray() {
+    const table = ArrayOperationsComponent.oneVisible(browser.$$('//table'));
+    return table.$$('//td[position()=3]/span/span');
+  }
+
+  // "Post Code"
+  get actualPostCodeArray() {
+    const table = ArrayOperationsComponent.oneVisible(browser.$$('//table'));
+    return table.$$('//td[position()=4]/span/span');
+  }
+
+  // "Email"
+  get actualEmailArray() {
+    const table = ArrayOperationsComponent.oneVisible(browser.$$('//table'));
+    return table.$$('//td[position()=6]/span/a');
+  }
+
   /* ACTIONS */
   // Click on New button for open web-form
   get clickNewBtn() {
     (ArrayOperationsComponent.oneVisible(this.newBtn)).click();
+    browser.pause(Page.WAITING_MEDIUM);
     return LeadsSfPage;
   }
 
@@ -89,7 +110,11 @@ class LeadsSfPage extends Page {
 
   // return actual title of the web-form
   get takeActualTitleWf() {
-    (ArrayOperationsComponent.oneVisible(this.actualTitleWf)).getText();
+    const iFrms = browser.$$('//iframe');
+    browser.switchToFrame(iFrms[1]);
+    const wTitle = $('//div[@class="content"]/' +
+      'h2[@class="pageDescription"]');
+    return wTitle.getText();
   }
 
   // is any "alert/error" area displayed?
@@ -136,7 +161,7 @@ class LeadsSfPage extends Page {
   // click on "Save" button web-form
   get clickSaveBtnWf() {
     (ArrayOperationsComponent.oneVisible(this.saveBtnWf)).click();
-    browser.pause(LeadsSfPage.WAITING_BIG);
+    browser.pause(Page.WAITING_BIG);
     return LeadSfPage;
   }
 }
