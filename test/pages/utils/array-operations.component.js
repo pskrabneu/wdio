@@ -23,7 +23,9 @@ class ArrayOperationsComponent {
   }
 
   // takes an array of web-elements and an element
-  // and return 'true' if array contains this element
+  // and return 'true' if the array contains this element
+  // return 'false' in case array has no elements
+  // or the array doesn't contain the element
   containsElement(array, textValue) {
     const size = array.length;
 
@@ -32,7 +34,7 @@ class ArrayOperationsComponent {
     let x;
 
     if (size > 0) {
-      x = array.every(isContains);
+      x = array.some(isContains);
       return x;
     } else {
       x = false;
