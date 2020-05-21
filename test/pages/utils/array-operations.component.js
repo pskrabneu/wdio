@@ -6,15 +6,15 @@ class ArrayOperationsComponent {
   // visible elements
   oneVisible(array) {
     const steps = array.length;
-    const infoText = 'Array Operations: Element ';
+    // const infoText = 'Array Operations: Element ';
     if (steps > 0) {
-      console.log('Array size = ' + steps);
+      // console.log('Array size = ' + steps);
       for (let i = 0; i < steps; i++) {
         if (array[i].isDisplayed()) {
-          console.log(infoText + i + ' is displayed\n');
+          // console.log(infoText + i + ' is displayed\n');
           return array[i];
         } else {
-          console.log(infoText + i + ' is not displayed\n');
+          // console.log(infoText + i + ' is not displayed\n');
         }
       }
     } else {
@@ -26,7 +26,7 @@ class ArrayOperationsComponent {
   // and return 'true' if the array contains this element
   // return 'false' in case array has no elements
   // or the array doesn't contain the element
-  containsElement(array, textValue) {
+  isContainsElement(array, textValue) {
     const size = array.length;
 
     // rule

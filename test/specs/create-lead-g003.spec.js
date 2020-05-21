@@ -52,46 +52,45 @@ describe('Create Lead: ', function() {
     LeadsSfPage.inputEmailWf(eMail);
     LeadsSfPage.inputProbabilityFieldWf;
     LeadsSfPage.clickSaveBtnWf;
-    browser.refresh();
+    LeadsSfPage.refreshLeads;
 
     // verify there are no error or warning area appears
     expect(LeadsSfPage.isAlertAreaDisplayed).toEqual(false);
     console.log('<--No Alert / Error area is displayed-->');
 
-    // open "Leads" page
-    CommonActionsComponent.openPage(LeadsSfPage, LeadsSfPage.appTitle);
+    CommonActionsComponent.openPage(LeadsSfPage, LeadsSfPage.pageTitle);
   });
 
   it('should open created "Lead" with fields defined earlier,' +
     ' no errors displayed', function() {
-    const contactNameArray = LeadsSfPage.actualContactNameArray;
-    const x = contactNameArray.length;
-    console.log('<--FT: "Contact Name"  <-->' + x);
-    for (let i = 0; i < x; i++) {
-      console.log('== "' + contactNameArray[i].getText() + '"');
-    }
+    // Taking data from the first row
+    // console.log('FT: Tables = ' + browser.$$('//table').length);
+    // console.log('FT: Table-TD = ' + LeadsSfPage.takeFirstRow.$$('//td').length);
+    // console.log('FT: Table-TH = ' + LeadsSfPage.takeFirstRow.$$('//th').length);
+    // console.log('FT: Contact Name = ' + LeadsSfPage.takeFirstRow.
+    //     $$('//th[@scope="row"]/span/a')[0].getText());
+    // console.log('FT: Trading Name = ' + LeadsSfPage.takeFirstRow.$$('//td')[2].getText());
+    // console.log('FT: Post Code = ' + LeadsSfPage.takeFirstRow.$$('//td')[3].getText());
+    // console.log('FT: Email = ' + LeadsSfPage.takeFirstRow.$$('//td')[5].getText());
 
-
-
-    const hasContactName = ArrayOperationsComponent.containsElement(contactNameArray, lastName);
-    console.log('<--FT: is has "Contact Name" <-->' + hasContactName);
-
+    // Verify "Trading Name"
+    const actualTradingName = LeadsSfPage.takeActualTradingName;
     expect(actualTradingName).toEqual(tradingName);
     console.log('<--The Page has right "Trading Name"-->');
 
     // Verify "Contact Name" (or "Last Name")
-    const actualLastName = LeadSfPage.takeActualLastName;
-    expect(actualLastName).toEqual(lastName);
+    const actualContactName = LeadsSfPage.takeActualContactName;
+    expect(actualContactName).toEqual(lastName);
     console.log('<--The Page has right "Contact Name"-->');
 
     // Verify "Post Code" within "Business Address"
-    const actualBusinessAddress = LeadSfPage.takeActualBusinessAddress;
+    const actualBusinessAddress = LeadsSfPage.takeActualPostCode;
     expect(actualBusinessAddress).toContain(postCode);
     console.log('<--The Page has right "Post Code"-->');
 
     // Verify "Email"
-    const actualEmail = LeadSfPage.takeActualEmail;
-    expect(actualEmail).toEqual(eMail);
+    const actualEmail = LeadsSfPage.takeActualEmail;
+    expect(actualEmail).toContain(eMail);
     console.log('<--The Page has right "Email"-->');
   });
 });

@@ -72,28 +72,30 @@ class LeadsSfPage extends Page {
   }
 
   // Collecting info after saving
-  // "Contact Name"
-  get actualContactNameArray() {
-    const table = ArrayOperationsComponent.oneVisible(browser.$$('//table'));
-    return table.$$('//th[@scope="row"]/span/a');
+  // Take visible table and first row
+  get takeFirstRow() {
+    const tb = browser.$$('//table');
+    const vTable = ArrayOperationsComponent.oneVisible(tb);
+    return vTable.$$('//tbody/tr')[0];
+  }
+  // "Trading Name"
+  get takeActualTradingName() {
+    return this.takeFirstRow.$$('//td')[2].getText();
   }
 
-  // "Trading Name"
-  get actualTradingNameArray() {
-    const table = ArrayOperationsComponent.oneVisible(browser.$$('//table'));
-    return table.$$('//td[position()=3]/span/span');
+  // "Contact Name"
+  get takeActualContactName() {
+    return this.takeFirstRow.$$('//th[@scope="row"]/span/a')[0].getText();
   }
 
   // "Post Code"
-  get actualPostCodeArray() {
-    const table = ArrayOperationsComponent.oneVisible(browser.$$('//table'));
-    return table.$$('//td[position()=4]/span/span');
+  get takeActualPostCode() {
+    return this.takeFirstRow.$$('//td')[3].getText();
   }
 
   // "Email"
-  get actualEmailArray() {
-    const table = ArrayOperationsComponent.oneVisible(browser.$$('//table'));
-    return table.$$('//td[position()=6]/span/a');
+  get takeActualEmail() {
+    return this.takeFirstRow.$$('//td')[5].getText();
   }
 
   /* ACTIONS */
@@ -162,6 +164,12 @@ class LeadsSfPage extends Page {
   get clickSaveBtnWf() {
     (ArrayOperationsComponent.oneVisible(this.saveBtnWf)).click();
     browser.pause(Page.WAITING_BIG);
+    return LeadSfPage;
+  }
+
+  // refresh page
+  get refreshLeads() {
+    browser.refresh();
     return LeadSfPage;
   }
 }
