@@ -14,7 +14,6 @@ class CommonActionsComponent {
 
   // open a page with the help of 9dots
   openPage(pageObject, pageTitle) {
-    // console.log('<---Common Actions Component--->');
     browser.pause(Page.WAITING_BIG);
     const pageTitleLinks = '//p[@class="slds-truncate"]/b[text()="' + pageTitle + '"]/../..';
     this.clickNineDots(pageObject);

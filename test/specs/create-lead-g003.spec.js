@@ -3,13 +3,10 @@ import { describe } from 'mocha';
 /* PAGES IMPORT */
 import LoginSfPage from '../pages/login-sf.page';
 import LeadsSfPage from '../pages/leads-sf.page';
-import LeadSfPage from '../pages/lead-sf.page';
 
 /* COMMON COMPONENTS IMPORT */
 import DataProviderComponent from '../pages/utils/data-provider.component';
 import CommonActionsComponent from '../pages/utils/common-actions.component';
-import ArrayOperationsComponent from '../pages/utils/array-operations.component';
-import Page from '../pages/page';
 
 /* CONSTANTS USED WITHIN THE TEST */
 const tradingName = DataProviderComponent.randomCompanyName +
@@ -63,16 +60,6 @@ describe('Create Lead: ', function() {
 
   it('should open created "Lead" with fields defined earlier,' +
     ' no errors displayed', function() {
-    // Taking data from the first row
-    // console.log('FT: Tables = ' + browser.$$('//table').length);
-    // console.log('FT: Table-TD = ' + LeadsSfPage.takeFirstRow.$$('//td').length);
-    // console.log('FT: Table-TH = ' + LeadsSfPage.takeFirstRow.$$('//th').length);
-    // console.log('FT: Contact Name = ' + LeadsSfPage.takeFirstRow.
-    //     $$('//th[@scope="row"]/span/a')[0].getText());
-    // console.log('FT: Trading Name = ' + LeadsSfPage.takeFirstRow.$$('//td')[2].getText());
-    // console.log('FT: Post Code = ' + LeadsSfPage.takeFirstRow.$$('//td')[3].getText());
-    // console.log('FT: Email = ' + LeadsSfPage.takeFirstRow.$$('//td')[5].getText());
-
     // Verify "Trading Name"
     const actualTradingName = LeadsSfPage.takeActualTradingName;
     expect(actualTradingName).toEqual(tradingName);
