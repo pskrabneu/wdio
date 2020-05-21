@@ -59,6 +59,18 @@ class AccountsSfPage extends Page {
     return AccountsSfPage;
   }
 
+  // switch to iframe in order to access elements on web-form 2
+  get swToFrame() {
+    const fr = browser.$$('//iframe');
+    const frame = ArrayOperationsComponent.oneVisible(fr);
+    browser.switchToFrame(frame);
+  }
+
+  // switch out to the Parent frame
+  get swToParentFrame() {
+    browser.switchToParentFrame();
+  }
+
   // "Create Account: Client" web-form:
   // "Create Account: Client" title
   get takeActualTitleWf2() {
@@ -78,6 +90,8 @@ class AccountsSfPage extends Page {
   // Category Code 3 ?
   // "Post Code"
   // Error area
+
+
 
 }
 
