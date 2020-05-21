@@ -3,6 +3,14 @@ import Page from './page';
 import ArrayOperationsComponent from './utils/array-operations.component';
 
 class TerritoriesSfPage extends Page {
+  /* CONSTANTS */
+  constructor() {
+    super();
+    this.appTitle = 'Territories';
+    this.pageTitle = 'Territories';
+    this.webForm = 'New Territory';
+  }
+
   /* ELEMENTS */
   /* 'Territory' page */
   expectedAppName;

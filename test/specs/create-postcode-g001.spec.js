@@ -9,8 +9,9 @@ import TerritoriesSfPage from '../pages/territories-sf.page';
 /* COMMON COMPONENTS IMPORT */
 import DataProvider from '../pages/utils/data-provider.component';
 import ArrayOperationsComponent from '../pages/utils/array-operations.component';
+import CommonActionsComponent from '../pages/utils/common-actions.component';
 
-describe('Add Post Code to the Territory', function() {
+describe('Add Post Code to the Territory:', function() {
   // **Variables:**
   // For 'Territories' page
   const territoriesTabName = 'Territories';
@@ -20,22 +21,17 @@ describe('Add Post Code to the Territory', function() {
                       DataProvider.randomNumber +
                       DataProvider.randomNumber;
 
-  // Verify title for Home page
-  it('should have the "Home" page title', function() {
-    LoginSfPage.performLogin();
-
-    const homeSfPageTitle = HomeSfPage.actualPageTitle;
-    expect(homeSfPageTitle).toEqual('Lightning Experience');
-  });
-
   // Verify the 'Territories' tab is opened
   it('should open "Territories" tab correctly', function() {
-    HomeSfPage.clickAppLauncherDots;
-    HomeSfPage.inputTerritoriesTabName;
-    browser.pause(2000);
+    LoginSfPage.performLogin();
+    CommonActionsComponent.openPage(TerritoriesSfPage, TerritoriesSfPage.appTitle);
 
-    HomeSfPage.openTerritoriesPage;
-    browser.pause(2000);
+    // HomeSfPage.clickAppLauncherDots;
+    // HomeSfPage.inputTerritoriesTabName;
+    // browser.pause(2000);
+
+    // HomeSfPage.openTerritoriesPage;
+    // browser.pause(2000);
 
     const titlesT = TerritoriesSfPage.takeActualAppNameTitle;
 
