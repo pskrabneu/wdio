@@ -21,7 +21,7 @@ const postCode = DataProviderComponent.randomPostCode;
 
 const eMail = DataProviderComponent.randomEmail;
 
-describe('Create Lead: ', function() {
+describe('G003 - Create Lead:', function() {
   it('should open "Leads" tab', function() {
     LoginSfPage.performLogin();
 

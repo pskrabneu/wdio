@@ -11,7 +11,7 @@ import DataProvider from '../pages/utils/data-provider.component';
 import ArrayOperationsComponent from '../pages/utils/array-operations.component';
 import CommonActionsComponent from '../pages/utils/common-actions.component';
 
-describe('Add Post Code to the Territory:', function() {
+describe('G001 - Create Postcode:', function() {
   // **Variables:**
   // For 'Territories' page
   const territoriesTabName = 'Territories';
@@ -25,13 +25,6 @@ describe('Add Post Code to the Territory:', function() {
   it('should open "Territories" tab correctly', function() {
     LoginSfPage.performLogin();
     CommonActionsComponent.openPage(TerritoriesSfPage, TerritoriesSfPage.appTitle);
-
-    // HomeSfPage.clickAppLauncherDots;
-    // HomeSfPage.inputTerritoriesTabName;
-    // browser.pause(2000);
-
-    // HomeSfPage.openTerritoriesPage;
-    // browser.pause(2000);
 
     const titlesT = TerritoriesSfPage.takeActualAppNameTitle;
 

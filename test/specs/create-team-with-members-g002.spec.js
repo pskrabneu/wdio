@@ -13,7 +13,7 @@ import DataProviderComponent from '../pages/utils/data-provider.component';
 import CommonActionsComponent from '../pages/utils/common-actions.component';
 import ArrayOperationsComponent from '../pages/utils/array-operations.component';
 
-describe('Create team with members:', function() {
+describe('G002 - Create team with members:', function() {
   /* VARIABLES CREATED DURING THE TEST */
 
   // Variables:**
