@@ -1,6 +1,8 @@
 /* PAGES IMPORT */
 import Page from '../page';
 
+
+
 // Common elements for all pages
 const nineDotsBtn = '//div[@class="slds-icon-waffle"]';
 const searchAppsFld = '//input[@type="search"][@placeholder="Search apps and items..."]';
