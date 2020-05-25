@@ -73,8 +73,9 @@ describe('G006 - Create Account (A, B "Regional Tier"):', function() {
   });
 
   // populate "Global Objectives" field and click "Save" button
-  it('should populate "Global Objectives"field and click "Save" button,' +
-    'than opens "Account" page with defined "Trading Name"', function() {
+  it('should populate "Global Objectives" field and click "Save" button,' +
+    ' than opens "Account" page with defined "Trading Name" and "Regional Tier"' +
+    ' is "A" or "B"', function() {
     const objText = 'The text of objective for "' + tradingName + '" company is: TEXT OBJECTION';
     AccountsSfPage.inputGlobalObjectivesTxtAreaWf2(objText);
 
@@ -93,5 +94,9 @@ describe('G006 - Create Account (A, B "Regional Tier"):', function() {
     const namesAreEqual = (tradN1 === tradingName) && (tradN2 === tradingName);
     expect(namesAreEqual).toEqual(true);
     console.log('<--"Trading Name" is correct -->');
+
+    // "Regional Tier" is 'A' or 'B'
+    const isAorB = AccountsSfPage.isRegionalTierAorB;
+    expect(isAorB).toEqual(true);
   });
 });

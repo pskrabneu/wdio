@@ -157,8 +157,9 @@ class AccountsSfPage extends Page {
 
   // check "Trading Name" from left side
   get takeActualTradingName1() {
-    const trName = browser.$$('//span[contains(@class, "OutputText")]');
-    return (ArrayOperationsComponent.oneVisible(trName)).getText();
+    const trName = browser.$('//div[contains(@class, "OutputName")]/' +
+      'span[contains(@class, "OutputText")]');
+    return trName.getText();
   }
 
   // check "Trading Name" from right side
@@ -166,6 +167,24 @@ class AccountsSfPage extends Page {
     const trNameR= browser.$('//span[text()="Trading Name"]/' +
       '../../div/span/slot/slot/lightning-formatted-text');
     return trNameR.getText();
+  }
+
+  // take "Regional Tier" field
+  get takeActualRegionalTier() {
+    const tierAorB = browser.$('//span[text()="Regional Tier"]/' +
+      '../following-sibling::div/span');
+    return tierAorB.getText();
+  }
+
+  // check value of "Regional Tier" field 'A' or 'B'
+  get isRegionalTierAorB() {
+    const rTier = this.takeActualRegionalTier;
+
+    if (rTier === 'A' || rTier === 'B') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
