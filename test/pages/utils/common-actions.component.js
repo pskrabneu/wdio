@@ -33,6 +33,13 @@ class CommonActionsComponent {
     browser.pause(Page.WAITING_BIG);
     return pageObject;
   }
+
+  // refresh page
+  refreshPage(pageObject) {
+    browser.refresh();
+    browser.pause(Page.WAITING_MEDIUM);
+    return pageObject;
+  }
 }
 
 export default new CommonActionsComponent();

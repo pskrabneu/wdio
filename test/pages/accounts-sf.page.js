@@ -54,7 +54,7 @@ class AccountsSfPage extends Page {
   // "Next" button
   get clickNextBtnWf1() {
     browser.$('//div/button/span[text()="Next"]').click();
-    browser.pause(Page.WAITING_MEDIUM);
+    browser.pause(Page.WAITING_BIG);
     return AccountsSfPage;
   }
 
@@ -96,6 +96,24 @@ class AccountsSfPage extends Page {
     }
   }
 
+  // "Regional Tier 'A' or 'B'"
+  get selectRegionalTierDdlWf2() {
+    const x = Math.floor(Math.random() * Math.floor(100));
+    const regTier = browser.$('//label[text()="Regional Tier"]/' +
+      '../../../td/select');
+    if (x % 2 === 0) {
+      regTier.selectByVisibleText('A');
+    } else {
+      regTier.selectByVisibleText('B');
+    }
+  }
+
+  // "Global Objectives" text area
+  inputGlobalObjectivesTxtAreaWf2(objectiveText) {
+    const txtArea = browser.$('//textarea[contains(@id, "Client_Objectives")]');
+    txtArea.setValue(objectiveText);
+  }
+
   // "Payment Type"
   get selectPaymentTypeDdlWf2() {
     const pType = browser.$$('//label[text()="Payment Type"]/' +
@@ -119,7 +137,7 @@ class AccountsSfPage extends Page {
       '//input[@value="Save " and @type="button"]');
     sBtn.click();
     browser.pause(Page.WAITING_BIG);
-    browser.refresh();
+    // browser.refresh();
     return AccountsSfPage;
   }
 
@@ -139,9 +157,8 @@ class AccountsSfPage extends Page {
 
   // check "Trading Name" from left side
   get takeActualTradingName1() {
-    const trName = browser.$('//div[@class="slds-media"]/.//h1/.' +
-      '//div/span[contains(@class, "OutputText")]');
-    return trName.getText();
+    const trName = browser.$$('//span[contains(@class, "OutputText")]');
+    return (ArrayOperationsComponent.oneVisible(trName)).getText();
   }
 
   // check "Trading Name" from right side

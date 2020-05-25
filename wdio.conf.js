@@ -45,7 +45,7 @@ exports.config = {
             './test/specs/create-account-g005.spec.js'
         ],
         test006: [
-            './test/specs/xxx-g006.spec.js'
+            './test/specs/create-account-abregional-g006.spec.js'
         ],
         test007: [
             './test/specs/xxx-g007.spec.js'

@@ -65,6 +65,9 @@ describe('G005 - Create Account:', function() {
 
   // Account is created
   it('should opens "Account" page with defined "Trading Name"', function() {
+    // refresh page
+    CommonActionsComponent.refreshPage(AccountsSfPage);
+
     const pTit = browser.getUrl();
     expect(pTit).toContain(AccountsSfPage.pageTitle);
     console.log('<--"Account" page is opened-->');
