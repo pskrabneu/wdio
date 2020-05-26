@@ -30,7 +30,7 @@ describe('G007 - Create Agency with Client:', function() {
     const titleWf1 = AccountsSfPage.takeActualTitleWf1;
 
     // click "Agency" radio button
-    AccountsSfPage.selectAgencyRbWf1;
+    AccountsSfPage.selectTypeRbWf1('A');
 
     expect(titleWf1).toEqual(AccountsSfPage.webForm0);
     console.log('<--"New Account" web-form opens correctly, "Agency" selected-->');
@@ -59,9 +59,7 @@ describe('G007 - Create Agency with Client:', function() {
     console.log('<--After "Save" button no error displayed-->');
   });
 
-  // Account is created
   it('should opens "Account" page with defined "Trading Name"', function() {
-    // refresh page
     CommonActionsComponent.refreshPage(AccountsSfPage);
 
     const pTit = browser.getUrl();
@@ -74,5 +72,19 @@ describe('G007 - Create Agency with Client:', function() {
     const namesAreEqual = (tradN1 === tradingName) && (tradN2 === tradingName);
     expect(namesAreEqual).toEqual(true);
     console.log('<--"Trading Name" is correct -->');
+
+    browser.debug();
   });
+
+  // change "Agency Approval State" -> "Approved"
+  // click "Save"
+  // verify "Agency Approval State" is "Approved"
+
+  // click on "Related" tab
+  // click "Clients" -> "New"
+  // check web-form "New Agency Client" is opened
+  // populate: "Agency", "Client", "Commission", "Active" = "True"
+  // and click "Save"
+
+  // verify "Clients" -> "Client" is "Client" defined before
 });

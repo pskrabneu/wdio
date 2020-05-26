@@ -59,20 +59,6 @@ class AccountsSfPage extends Page {
     rBtns.click();
   }
 
-  // click "Client" radio button
-  get selectClientRbWf1() {
-    const rBtns = browser.$('//span[text()="Client"]/../preceding-sibling::div');
-    rBtns.click();
-    browser.pause(Page.WAITING_SMALL);
-  }
-
-  // click "Agency" radio button
-  get selectAgencyRbWf1() {
-    const rBtns = browser.$('//span[text()="Agency"]/../preceding-sibling::div');
-    rBtns.click();
-    browser.pause(Page.WAITING_SMALL);
-  }
-
   // "Next" button
   get clickNextBtnWf1() {
     browser.$('//div/button/span[text()="Next"]').click();
