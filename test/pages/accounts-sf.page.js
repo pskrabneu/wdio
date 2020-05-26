@@ -137,7 +137,6 @@ class AccountsSfPage extends Page {
       '//input[@value="Save " and @type="button"]');
     sBtn.click();
     browser.pause(Page.WAITING_BIG);
-    // browser.refresh();
     return AccountsSfPage;
   }
 

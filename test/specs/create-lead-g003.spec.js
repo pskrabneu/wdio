@@ -34,7 +34,6 @@ describe('G003 - Create Lead:', function() {
 
   it('should press "New" button and open web-form', function() {
     LeadsSfPage.clickNewBtn;
-
     const actualTitleWf = LeadsSfPage.takeActualTitleWf;
     expect(actualTitleWf).toEqual(LeadsSfPage.webForm);
     console.log('<--"Create Lead" web-form opened correctly-->');

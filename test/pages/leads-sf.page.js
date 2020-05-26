@@ -112,8 +112,8 @@ class LeadsSfPage extends Page {
 
   // return actual title of the web-form
   get takeActualTitleWf() {
-    const iFrms = browser.$$('//iframe');
-    browser.switchToFrame(iFrms[1]);
+    const iFrms = browser.$('//iframe[@height="100%" and @width="100%"]');
+    browser.switchToFrame(iFrms);
     const wTitle = $('//div[@class="content"]/' +
       'h2[@class="pageDescription"]');
     return wTitle.getText();

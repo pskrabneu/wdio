@@ -4,7 +4,7 @@ const allure = require('@wdio/allure-reporter').default;
 
 // Max time for single test case execution
 let timeout = process.env.DEBUG ? 99999999 : 120000;
-let elementTimeout = 10000;
+let elementTimeout = 20000;
 
 exports.config = {
     //
@@ -111,7 +111,7 @@ exports.config = {
         //
         browserName: 'chrome',
         'goog:chromeOptions': {
-            args: ['--disable-infobars', '--window-size=1920,1440'],
+            args: ['--disable-infobars', '--window-size=1920,1000'],
         }
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
