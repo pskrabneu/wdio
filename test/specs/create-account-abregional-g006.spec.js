@@ -43,15 +43,12 @@ describe('G006 - Create Account (A, B "Regional Tier"):', function() {
     // switch to IFrame
     AccountsSfPage.swToFrame;
 
-    console.log('FT: Actual title size: "' + browser.$$('//iframe').length + '"');
-    console.log('FT: Actual title: "' + AccountsSfPage.takeActualTitleWf2 + '"');
-
     expect(AccountsSfPage.takeActualTitleWf2).toEqual(AccountsSfPage.webForm1a);
     console.log('<--"Create Account: Client" web-form opens correctly-->');
   });
 
-  it('should populate all fields, except "Regional Tier" = "A" or "B" then' +
-    ' and click "Save" button. Error message should be displayed', function() {
+  it('should populate all fields and "Regional Tier" is "A" or "B" then' +
+    ' click "Save" button. Error message should be displayed', function() {
     // "Trading Name"
     AccountsSfPage.inputTradingNameFldWf2(tradingName);
     // "Trading Type"
