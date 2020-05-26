@@ -30,10 +30,8 @@ describe('G006 - Create Account (A, B "Regional Tier"):', function() {
   it('should display "New Account" web-form', function() {AccountsSfPage.clickNewBtn;
     const titleWf1 = AccountsSfPage.takeActualTitleWf1;
 
-    // click and check "Client" radio button
-    const isSelRb = AccountsSfPage.selectClientRbWf1;
-    expect(isSelRb).toEqual(true);
-    console.log('<--"Client" radio-button is selected-->');
+    // click "Client" radio button
+    AccountsSfPage.selectTypeRbWf1('C');
 
     expect(titleWf1).toEqual(AccountsSfPage.webForm0);
     console.log('<--"New Account" web-form opens correctly-->');
@@ -41,8 +39,6 @@ describe('G006 - Create Account (A, B "Regional Tier"):', function() {
 
   it('should display "Create Account: Client" web-form', function() {
     AccountsSfPage.clickNextBtnWf1;
-
-    console.log('FT: <-**->' + browser.$$('//iframe').length + '<-**->');
 
     // switch to IFrame
     AccountsSfPage.swToFrame;
