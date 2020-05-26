@@ -50,7 +50,8 @@ class TeamsSfPage extends Page {
 
   // List of names in 'Team Name' column
   get listTeamName() {
-    return $$('//tbody/tr/th/span/a');
+    // return $$('//tbody/tr/th/span/a');
+    return $$('//label/input[@type="checkbox"]/ancestor::tr/.//th[@scope="row"]/span');
   }
 
   /* ACTIONS */
