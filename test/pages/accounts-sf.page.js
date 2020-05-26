@@ -16,7 +16,8 @@ class AccountsSfPage extends Page {
     this.appTitle = 'Accounts';
     this.pageTitle = 'Account';
     this.webForm0 = 'New Account';
-    this.webForm1 = 'Create Account: Client';
+    this.webForm1a = 'Create Account: Client';
+    this.webForm1b = 'Create Account: Agency';
   }
 
   /* ELEMENTS */
@@ -44,11 +45,32 @@ class AccountsSfPage extends Page {
     return wF1.getText();
   }
 
-  // check is "Client" radio button selected
-  get isSelectedClientRbWf1() {
-    const rBtns = browser.$$('//div[contains(@class, "modal-body")]/.' +
-      '//div[@class="changeRecordTypeRow"]/fieldset/.//input[@type="radio"]');
-    return rBtns[0].isSelected();
+  // click "Client" or "Agency" radio button
+  selectTypeRbWf1(accType) {
+    let tP;
+    if (accType === 'C') {
+      tP = 'Client';
+    } else if (accType === 'A') {
+      tP = 'Agency';
+    } else {
+      console.log('Error type!!!');
+    }
+    const rBtns = browser.$('//span[text()="' + tP + '"]/../preceding-sibling::div');
+    rBtns.click();
+  }
+
+  // click "Client" radio button
+  get selectClientRbWf1() {
+    const rBtns = browser.$('//span[text()="Client"]/../preceding-sibling::div');
+    rBtns.click();
+    browser.pause(Page.WAITING_SMALL);
+  }
+
+  // click "Agency" radio button
+  get selectAgencyRbWf1() {
+    const rBtns = browser.$('//span[text()="Agency"]/../preceding-sibling::div');
+    rBtns.click();
+    browser.pause(Page.WAITING_SMALL);
   }
 
   // "Next" button
@@ -70,8 +92,8 @@ class AccountsSfPage extends Page {
     browser.switchToParentFrame();
   }
 
-  // "Create Account: Client" web-form:
-  // "Create Account: Client" title
+  // "Create Account: Client/Agency" web-form:
+  // "Create Account: Client/Agency" title
   get takeActualTitleWf2() {
     const wF2 = browser.$('//div[@class="content"]/h2[@class="pageDescription"]');
     return wF2.getText();
@@ -133,9 +155,9 @@ class AccountsSfPage extends Page {
 
   // click "Save" button
   get clickSaveBtnWf2() {
-    const sBtn = browser.$('//div[contains(@class, "BottomButtons")]/.' +
-      '//input[@value="Save " and @type="button"]');
-    sBtn.click();
+    const sBtn = browser.$$('//input[@value="Save " and @type="button" and' +
+      ' contains(@onclick, "onBeforeSave")]');
+    (ArrayOperationsComponent.oneVisible(sBtn)).click()
     browser.pause(Page.WAITING_BIG);
     return AccountsSfPage;
   }

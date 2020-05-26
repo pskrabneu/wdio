@@ -14,8 +14,7 @@ const tradingName = DataProviderComponent.randomCompanyName +
   DataProviderComponent.randomNumber;
 const postCode = DataProviderComponent.randomPostCode;
 
-describe('G006 - Create Account (A, B "Regional Tier"):', function() {
-  // open "Accounts" tab
+describe('G007 - Create Agency with Client:', function() {
   it('open "Accounts" tab', function() {
     LoginSfPage.performLogin();
 
@@ -26,61 +25,42 @@ describe('G006 - Create Account (A, B "Regional Tier"):', function() {
     console.log('<--"Accounts" page opens correctly-->');
   });
 
-  // click "New" button
-  it('should display "New Account" web-form', function() {AccountsSfPage.clickNewBtn;
+  it('should display "New Account" web-form', function() {
+    AccountsSfPage.clickNewBtn;
     const titleWf1 = AccountsSfPage.takeActualTitleWf1;
 
-    // click and check "Client" radio button
-    const isSelRb = AccountsSfPage.selectClientRbWf1;
-    expect(isSelRb).toEqual(true);
-    console.log('<--"Client" radio-button is selected-->');
+    // click "Agency" radio button
+    AccountsSfPage.selectAgencyRbWf1;
 
     expect(titleWf1).toEqual(AccountsSfPage.webForm0);
-    console.log('<--"New Account" web-form opens correctly-->');
+    console.log('<--"New Account" web-form opens correctly, "Agency" selected-->');
   });
 
-  it('should display "Create Account: Client" web-form', function() {
+  it('should display "Create Account: Agency" web-form', function() {
     AccountsSfPage.clickNextBtnWf1;
-
-    console.log('FT: <-**->' + browser.$$('//iframe').length + '<-**->');
 
     // switch to IFrame
     AccountsSfPage.swToFrame;
 
-    console.log('FT: Actual title size: "' + browser.$$('//iframe').length + '"');
-    console.log('FT: Actual title: "' + AccountsSfPage.takeActualTitleWf2 + '"');
-
-    expect(AccountsSfPage.takeActualTitleWf2).toEqual(AccountsSfPage.webForm1a);
-    console.log('<--"Create Account: Client" web-form opens correctly-->');
+    expect(AccountsSfPage.takeActualTitleWf2).toEqual(AccountsSfPage.webForm1b);
+    console.log('<--"Create Account: Agency" web-form opens correctly-->');
   });
 
-  it('should populate all fields, except "Regional Tier" = "A" or "B" then' +
-    ' and click "Save" button. Error message should be displayed', function() {
+  it('should populate all fields and click "Save" button', function() {
     // "Trading Name"
     AccountsSfPage.inputTradingNameFldWf2(tradingName);
-    // "Trading Type"
-    AccountsSfPage.selectTradingTypeDdlWf2;
     // "Post Code"
     AccountsSfPage.inputPostCodeFldWf2(postCode);
-    // "Regional Tier" 'A' or 'B'
-    AccountsSfPage.selectRegionalTierDdlWf2;
 
     AccountsSfPage.clickSaveBtnWf2;
 
     const isEr = AccountsSfPage.isAlertAreaDisplayed;
-    expect(isEr).toEqual(true);
-    console.log('<--Error message about client is tier (A or B) is displayed-->');
+    expect(isEr).toEqual(false);
+    console.log('<--After "Save" button no error displayed-->');
   });
 
-  // populate "Global Objectives" field and click "Save" button
-  it('should populate "Global Objectives" field and click "Save" button,' +
-    ' than opens "Account" page with defined "Trading Name" and "Regional Tier"' +
-    ' is "A" or "B"', function() {
-    const objText = 'The text of objective for "' + tradingName + '" company is: TEXT OBJECTION';
-    AccountsSfPage.inputGlobalObjectivesTxtAreaWf2(objText);
-
-    AccountsSfPage.clickSaveBtnWf2;
-
+  // Account is created
+  it('should opens "Account" page with defined "Trading Name"', function() {
     // refresh page
     CommonActionsComponent.refreshPage(AccountsSfPage);
 
@@ -94,9 +74,5 @@ describe('G006 - Create Account (A, B "Regional Tier"):', function() {
     const namesAreEqual = (tradN1 === tradingName) && (tradN2 === tradingName);
     expect(namesAreEqual).toEqual(true);
     console.log('<--"Trading Name" is correct -->');
-
-    // "Regional Tier" is 'A' or 'B'
-    const isAorB = AccountsSfPage.isRegionalTierAorB;
-    expect(isAorB).toEqual(true);
   });
 });

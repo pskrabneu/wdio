@@ -48,10 +48,10 @@ exports.config = {
             './test/specs/create-account-abregional-g006.spec.js'
         ],
         test007: [
-            './test/specs/xxx-g007.spec.js'
+            './test/specs/create-agency-with-client-g007.spec.js'
         ],
         test008: [
-            './test/specs/xxx-g008.spec.js'
+            './test/specs/create-opportunity-g008.spec.js'
         ],
         test009: [
             './test/specs/xxx-g009.spec.js'

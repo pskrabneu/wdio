@@ -8,7 +8,8 @@ export default class Page {
     this.appTitle = 'My Page';
     this.pageTitle = 'My Page Title';
     this.webForm0 = 'Web form';
-    this.webForm1 = 'Web form';
+    this.webForm1a = 'Web form';
+    this.webForm1b = 'Web Form';
   }
 
   open(path) {

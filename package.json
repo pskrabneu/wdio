@@ -10,6 +10,8 @@
     "test004": "wdio wdio.conf.js --suite test004",
     "test005": "wdio wdio.conf.js --suite test005",
     "test006": "wdio wdio.conf.js --suite test006",
+    "test007": "wdio wdio.conf.js --suite test007",
+    "test008": "wdio wdio.conf.js --suite test008",
     "current": "wdio wdio.conf.js --suite currentTest",
     "temp": "wdio wdio.conf.js --suite testFun",
     "test": "wdio wdio.conf.js",

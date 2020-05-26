@@ -29,10 +29,8 @@ describe('G005 - Create Account:', function() {
     AccountsSfPage.clickNewBtn;
     const titleWf1 = AccountsSfPage.takeActualTitleWf1;
 
-    // click and check "Client" radio button
-    const isSelRb = AccountsSfPage.isSelectedClientRbWf1;
-    expect(isSelRb).toEqual(true);
-    console.log('<--"Client" radio-button is selected-->');
+    // click "Client" radio button
+    AccountsSfPage.selectTypeRbWf1('C');
 
     expect(titleWf1).toEqual(AccountsSfPage.webForm0);
     console.log('<--"New Account" web-form opens correctly-->');
@@ -44,7 +42,7 @@ describe('G005 - Create Account:', function() {
     // switch to IFrame
     AccountsSfPage.swToFrame;
 
-    expect(AccountsSfPage.takeActualTitleWf2).toEqual(AccountsSfPage.webForm1);
+    expect(AccountsSfPage.takeActualTitleWf2).toEqual(AccountsSfPage.webForm1a);
     console.log('<--"Create Account: Client" web-form opens correctly-->');
   });
 
@@ -56,6 +54,7 @@ describe('G005 - Create Account:', function() {
     // "Post Code"
     AccountsSfPage.inputPostCodeFldWf2(postCode);
 
+    // click "Save" button
     AccountsSfPage.clickSaveBtnWf2;
 
     const isEr = AccountsSfPage.isAlertAreaDisplayed;
