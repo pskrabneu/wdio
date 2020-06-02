@@ -21,6 +21,16 @@ class AccountsSfPage extends Page {
   }
 
   /* ELEMENTS */
+  // "Accounts" page, click on down-arrow for editing "Account"
+  get editAccountLink() {
+    const edAccountLinks = browser.$$('//div/div[@role="menu"]/ul/li/a/' +
+      'div[@title="Edit" and @role="button"]');
+    for (let i = 0; i < edAccountLinks.length; i++) {
+      console.log('FP: is edit link visible? = ' + edAccountLinks[i].isDisplayed());
+    }
+
+    return ArrayOperationsComponent.oneVisible(edAccountLinks);
+  }
 
   /* ACTIONS */
   // App Title
@@ -68,7 +78,7 @@ class AccountsSfPage extends Page {
 
   // switch to iframe in order to access elements on web-form 2
   get swToFrame() {
-    const fr = browser.$$('//iframe');
+    const fr = browser.$$('//iframe[contains(@title, "accessibility")]');
     const frame = ArrayOperationsComponent.oneVisible(fr);
     browser.switchToFrame(frame);
   }
@@ -82,6 +92,7 @@ class AccountsSfPage extends Page {
   // "Create Account: Client/Agency" title
   get takeActualTitleWf2() {
     const wF2 = browser.$('//div[@class="content"]/h2[@class="pageDescription"]');
+    wF2.waitForDisplayed();
     return wF2.getText();
   }
 
@@ -139,13 +150,35 @@ class AccountsSfPage extends Page {
     pCode.setValue(postCode);
   }
 
+  // select-off "Needs Agency Approval" checkbox
+  get selectOffNeedsApprovalChckBoxWf2() {
+    const chckBox = browser.$('//span/input[@id="Needs_Agency_Approval__c"]');
+    const isSelected = chckBox.getAttribute('checked');
+    if (isSelected === 'checked') {
+      chckBox.click();
+    }
+  }
+
+  // select value "Agency Approval State" = "Approved"
+  get selectAgencyApprovalStateWf2() {
+    const agencyApprovalState = browser.$('//select[@id="Agency_Approval_State__c"]');
+    agencyApprovalState.selectByVisibleText('Approved');
+  }
+
   // click "Save" button
   get clickSaveBtnWf2() {
-    const sBtn = browser.$$('//input[@value="Save " and @type="button" and' +
+    const sBtns = browser.$$('//div[contains(@class, "BottomButtons")]//' +
+      'input[@value="Save " and @type="button" and' +
       ' contains(@onclick, "onBeforeSave")]');
-    (ArrayOperationsComponent.oneVisible(sBtn)).click()
-    browser.pause(Page.WAITING_BIG);
-    return AccountsSfPage;
+    if (sBtns.length > 0) {
+      const sBtn = ArrayOperationsComponent.oneVisible(sBtns);
+      sBtn.click();
+      browser.pause(Page.WAITING_BIG);
+      return AccountsSfPage;
+    } else {
+      console.log('Save btn is not found');
+      // browser.debug();
+    }
   }
 
   // Error area
@@ -160,20 +193,6 @@ class AccountsSfPage extends Page {
     const pgTitle = browser.$$('//h1/div[contains(@class, "entityNameTitle")]');
     console.log('FP: "Account" size = ' + pgTitle.length);
     return (ArrayOperationsComponent.oneVisible(pgTitle)).getText();
-  }
-
-  // check "Trading Name" from left side
-  get takeActualTradingName1() {
-    const trName = browser.$('//div[contains(@class, "OutputName")]/' +
-      'span[contains(@class, "OutputText")]');
-    return trName.getText();
-  }
-
-  // check "Trading Name" from right side
-  get takeActualTradingName2() {
-    const trNameR= browser.$('//span[text()="Trading Name"]/' +
-      '../../div/span/slot/slot/lightning-formatted-text');
-    return trNameR.getText();
   }
 
   // take "Regional Tier" field

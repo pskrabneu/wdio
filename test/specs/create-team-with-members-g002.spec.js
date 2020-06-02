@@ -17,9 +17,6 @@ describe('G002 - Create team with members:', function() {
   /* VARIABLES CREATED DURING THE TEST */
 
   // Variables:**
-  // 'Parent Teams' tab name
-  const appName = 'Parent Teams';
-  const parentTeamsTabName = 'Parent Teams';
   const parentTeamNameWf = DataProviderComponent.randomParentTeamName +
                             ' PT' + DataProviderComponent.randomLetter +
                             DataProviderComponent.randomLetter +
@@ -44,19 +41,12 @@ describe('G002 - Create team with members:', function() {
 
   // 2. Navigate to the 'Parent Teams' tab
   it('should opens "Parent Team" tab', function() {
-    HomeSfPage.clickAppLauncherDots;
-    HomeSfPage.inputParentTeamsTabName;
-
-    browser.pause(Page.WAITING_SMALL);
-
-    HomeSfPage.openParentTeamsPage;
-
-    browser.pause(2000);
+    CommonActionsComponent.openPage(ParentTeamsSfPage, ParentTeamsSfPage.appTitle);
 
     // verify we are opened the right page
-    ParentTeamsSfPage.appName = appName;
+    ParentTeamsSfPage.appName = ParentTeamsSfPage.appTitle;
     const currentTabName = ParentTeamsSfPage.tabName.getText();
-    expect(currentTabName).toEqual(parentTeamsTabName);
+    expect(currentTabName).toEqual(ParentTeamsSfPage.appTitle);
     console.log('"Parent Team" tab opens correctly');
   });
 

@@ -3,18 +3,24 @@ import Page from './page';
 import ArrayOperationsComponent from './utils/array-operations.component';
 
 class ParentTeamsSfPage extends Page {
-  // variables on ParentTeamsSfPage
-  appName;
-
   // variables on 'New Parent Team' web-form
   parentTeamName;
   salesRegion;
   description;
 
+  constructor() {
+    super();
+    this.appTitle = 'Parent Teams';
+    this.pageTitle = 'Parent Teams';
+    // this.webForm0 = 'Web form';
+    // this.webForm1a = 'Web form';
+    // this.webForm1b = 'Web Form';
+  }
+
   /* ELEMENTS */
   /* 'Parent Teams' page */
   get tabName() {
-    return $('//ol/li/span[text()="' + this.appName + '"]');
+    return $('//ol/li/span[text()="' + this.appTitle + '"]');
   }
 
   get newBtn() {
