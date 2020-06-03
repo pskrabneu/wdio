@@ -64,8 +64,13 @@ class AccountSfPage extends Page {
   get clickNewAgencyClientBtn() {
     const newBtn = browser.$('//a[contains(@href, "Agency_Clients")]/' +
       '../../../following-sibling::div/div');
-    newBtn.click();
-    return AccountSfPage;
+    if (newBtn.isClickable()) {
+      newBtn.click();
+      browser.pause(Page.WAITING_MEDIUM);
+      return AccountSfPage;
+    } else {
+      console.log('"New" Agency button isn\'t displayed');
+    }
   }
 
   get takeNewAgencyClientTitleWf1() {

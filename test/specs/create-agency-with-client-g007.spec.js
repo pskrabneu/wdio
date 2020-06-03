@@ -97,6 +97,8 @@ describe('G007 - Create Agency with Client:', function() {
 
     // click "Clients" -> "New"
     AccountSfPage.clickNewAgencyClientBtn;
+    browser.buttonDown(2);
+    browser.buttonUp(2);
 
     // check web-form "New Agency Client" is opened
     const wfTitle = AccountSfPage.takeNewAgencyClientTitleWf1;
@@ -113,6 +115,7 @@ describe('G007 - Create Agency with Client:', function() {
 
     // and click "Save"
     AccountSfPage.clickSaveBtnWf1;
+    browser.debug();
     // TODO
   });
 
