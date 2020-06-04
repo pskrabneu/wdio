@@ -94,17 +94,24 @@ describe('G007 - Create Agency with Client:', function() {
   it('should display "New Agency Client" web-form', function() {
     // click on "Related" tab
     AccountSfPage.clickRelatedTab;
+    AccountSfPage.clickClientsRt;
+    AccountSfPage.clickNewBtnRt;
 
     // click "Clients" -> "New"
-    AccountSfPage.clickNewAgencyClientBtn;
-    browser.buttonDown(2);
-    browser.buttonUp(2);
+    // AccountSfPage.clickNewAgencyClientBtn;
+    // the issue:
+    // after clicking "New" button the "New Agency Client" web-form is not appeared
+
+    browser.keys(['\uE03C']);
+    browser.keys(['\uE03C']);
+    browser.keys(['F12']);
+
+    // browser.debug();
 
     // check web-form "New Agency Client" is opened
     const wfTitle = AccountSfPage.takeNewAgencyClientTitleWf1;
     expect(wfTitle).toEqual(AccountSfPage.webForm0);
   });
-
 
   it('should populate required fields then click "Save"' +
     ' and show "Client" defined before', function() {
@@ -118,12 +125,5 @@ describe('G007 - Create Agency with Client:', function() {
     browser.debug();
     // TODO
   });
-
-
-
-
-
-
   // verify "Clients" -> "Client" is "Client" defined before
-
 });

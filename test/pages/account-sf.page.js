@@ -1,5 +1,3 @@
-// 'Template' for Page Object page (parent-teams-sf.page.js)
-
 /* PAGES IMPORT */
 import Page from './page';
 
@@ -63,7 +61,7 @@ class AccountSfPage extends Page {
 
   get clickNewAgencyClientBtn() {
     const newBtn = browser.$('//a[contains(@href, "Agency_Clients")]/' +
-      '../../../following-sibling::div/div');
+      '../../../following-sibling::div/div/ul');
     if (newBtn.isClickable()) {
       newBtn.click();
       browser.pause(Page.WAITING_MEDIUM);
@@ -111,6 +109,28 @@ class AccountSfPage extends Page {
     saveBtn.click();
     browser.pause(Page.WAITING_MEDIUM);
     return AccountSfPage;
+  }
+
+  // click on "Clients" link on "Related" tab
+  get clickClientsRt() {
+    const clnts = browser.$('//span[@title="Clients" and text()="Clients"]');
+    clnts.click();
+    browser.pause(Page.WAITING_MEDIUM);
+    return AccountSfPage;
+  }
+
+  // click on "New" button on "Account"->"Clients" page
+  get clickNewBtnRt() {
+    const newBtn = browser.$('//div[@role="banner"]/.//a[@title="New" and @role="button"]');
+    newBtn.click();
+    return AccountSfPage;
+  }
+
+  // click on "Credit Control Details" link
+  get clickCreditControlDetails() {
+    const credContrDet = browser.$('//span[text()="Credit Control Details"]/' +
+      '../following-sibling::div/.//a[@id="window"]');
+    credContrDet.click();
   }
 }
 

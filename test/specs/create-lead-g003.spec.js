@@ -29,6 +29,7 @@ describe('G003 - Create Lead:', function() {
     CommonActionsComponent.openPage(LeadsSfPage, LeadsSfPage.appTitle);
 
     expect(LeadsSfPage.takeActualAppNameTitle).toEqual(LeadsSfPage.appTitle);
+    utilities.takeScreenshot('leads_page_opens_correctly');
     console.log('<--"Leads" page opens correctly-->');
   });
 
@@ -49,6 +50,18 @@ describe('G003 - Create Lead:', function() {
     LeadsSfPage.inputProbabilityFieldWf;
     LeadsSfPage.clickSaveBtnWf;
     LeadsSfPage.refreshLeads;
+
+    // Trading Name+
+    // Last Name+
+    // Lead Source+
+
+    // Lead Status
+    // Probability
+    // Email
+
+    // add Street(!)
+    // add Phone(!)
+
 
     // verify there are no error or warning area appears
     expect(LeadsSfPage.isAlertAreaDisplayed).toEqual(false);

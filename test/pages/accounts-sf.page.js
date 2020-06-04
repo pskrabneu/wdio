@@ -2,6 +2,7 @@
 
 /* PAGES IMPORT */
 import Page from './page';
+import AccountSfPage from './account-sf.page';
 
 /* COMMON COMPONENTS IMPORT */
 import ArrayOperationsComponent from '../pages/utils/array-operations.component';
@@ -38,6 +39,13 @@ class AccountsSfPage extends Page {
     const pt = browser.$$('//nav[@role="navigation" and' +
       ' @aria-label="Breadcrumbs"]/.//span');
     return (ArrayOperationsComponent.oneVisible(pt)).getText();
+  }
+
+  // take any Account from the list and click on it
+  get clickOnRandomAccount() {
+    const accs = browser.$$('//table/tbody/tr/th/span/a');
+    accs[Math.floor(Math.random() * accs.length) - 5].click();
+    return AccountSfPage;
   }
 
   // click on "New" button

@@ -30,6 +30,7 @@ describe('G001 - Create Postcode:', function() {
 
     expect(titlesT).toEqual(territoriesTabName);
     console.log('"Territories" tab opens correctly');
+    utilities.takeScreenshot('territories_page_opens_correctly');
   });
 
   // 'Create new territory' form is displayed
@@ -37,6 +38,7 @@ describe('G001 - Create Postcode:', function() {
     ArrayOperationsComponent.oneVisible(TerritoriesSfPage.newButton).click();
 
     expect(TerritoriesSfPage.titleNewTerritoryForm).toHaveTextContaining('New Territory');
+    utilities.takeScreenshot('opens_territory_web_form');
   });
 
   // Fields are populated and Territory is saved

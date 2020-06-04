@@ -54,10 +54,10 @@ exports.config = {
             './test/specs/create-opportunity-g008.spec.js'
         ],
         test009: [
-            './test/specs/xxx-g009.spec.js'
+            './test/specs/close-opportunity-won-g009.spec.js'
         ],
         test010: [
-            './test/specs/xxx-g010.spec.js'
+            './test/specs/credit-control-details-g010.spec.js'
         ],
         test011: [
             './test/specs/xxx-g011.spec.js'
