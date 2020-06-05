@@ -44,7 +44,7 @@ class AccountsSfPage extends Page {
   // take any Account from the list and click on it
   get clickOnRandomAccount() {
     const accs = browser.$$('//table/tbody/tr/th/span/a');
-    accs[Math.floor(Math.random() * accs.length) - 5].click();
+    accs[Math.floor(Math.random() * accs.length)].click();
     return AccountSfPage;
   }
 

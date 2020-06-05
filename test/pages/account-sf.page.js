@@ -1,5 +1,6 @@
 /* PAGES IMPORT */
 import Page from './page';
+import CreditControlSfPage from './credit-control-sf.page';
 
 /* COMMON COMPONENTS IMPORT */
 import ArrayOperationsComponent from '../pages/utils/array-operations.component';
@@ -21,6 +22,12 @@ class AccountSfPage extends Page {
       '../following-sibling::div/span');
     const valField = ArrayOperationsComponent.oneVisible(stText);
     return valField.getText();
+  }
+
+  // element "Credit Control Details"
+  get creditControlDetails() {
+    return browser.$('//span[text()="Credit Control Details"]/' +
+      '../following-sibling::div/.//a');
   }
 
   get editAgencyAppStateBtn() {
@@ -128,9 +135,13 @@ class AccountSfPage extends Page {
 
   // click on "Credit Control Details" link
   get clickCreditControlDetails() {
-    const credContrDet = browser.$('//span[text()="Credit Control Details"]/' +
-      '../following-sibling::div/.//a[@id="window"]');
-    credContrDet.click();
+    this.creditControlDetails.click();
+    return CreditControlSfPage;
+  }
+
+  // take number of "Credit Control Details" link
+  get takeCreditControlDetailsNumber() {
+    return this.creditControlDetails.getText();
   }
 }
 
